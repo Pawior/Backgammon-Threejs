@@ -1,0 +1,31 @@
+POST http://localhost:3000/getActivePiecesArr HTTP/1.1
+
+###
+POST http://localhost:3000/getBeatenPiecesArr HTTP/1.1
+
+###
+POST http://localhost:3000/addActivePiece HTTP/1.1
+content-type: application/json
+
+{
+    "name": "piece77",
+    "position": {
+      "index": 1,
+      "level": 1
+    },
+    "color": 1
+}
+
+###
+
+POST http://localhost:3000/addBeatenPiece HTTP/1.1
+content-type: application/json
+
+{
+    "name": "piece77",
+    "position": {
+      "index": 1,
+      "level": 1
+    },
+    "color": 1
+}

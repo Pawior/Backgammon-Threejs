@@ -10,13 +10,14 @@ const httpServer = createServer(app);
 
 const routerJS = require("./app/router");
 
-// app.use(express.json({ limit: "50mb" }));
-// app.use(
-//   express.urlencoded({
-//     extended: true,
-//     limit: "50mb",
-//   })
-// );
+app.use(express.static("./app/views"));
+app.use(express.json({ limit: "50mb" }));
+app.use(
+  express.urlencoded({
+    extended: true,
+    limit: "50mb",
+  })
+);
 app.use(express.static("static"));
 
 const io = new Server(httpServer, {
@@ -25,9 +26,9 @@ const io = new Server(httpServer, {
   },
 });
 
-io.on("connection", (socket) => {
-  // ...
-});
+// io.on("connection", (socket) => {
+//   // ...
+// });
 
 // const io = require("socket.io")(server, {
 //   // ZAMIAST server - port ???
@@ -54,20 +55,30 @@ function getUsernameFromToken(token) {
   return token;
 }
 
-io.on("connection", (socket) => {
-  console.log(socket.id);
-  // socket.on("custom-event", (number, string, obj) => {
-  //   console.log(number, string, obj);
-  // });
-  socket.on("send-message", (message) => {
-    console.log(message);
-    // io.emit("receive-message", message);
-    socket.broadcast.emit("receive-message", message);
-  });
-});
+// io.on("connection", (socket) => {
+//   console.log(socket.id);
+//   // socket.on("custom-event", (number, string, obj) => {
+//   //   console.log(number, string, obj);
+//   // });
+//   socket.on("send-message", (message) => {
+//     console.log(message);
+//     // io.emit("receive-message", message);
+//     socket.broadcast.emit("receive-message", message);
+//   });
+// });
 
 httpServer.listen(PORT, () => {
   console.log("Listening on port " + PORT);
 });
 
 app.use("/", routerJS);
+
+const sendActivePiecesArr = require("./app/socketController");
+const onConnection = (socket) => {
+  console.log("coś");
+  sendActivePiecesArr(io, socket);
+};
+
+io.on("connection", onConnection);
+
+// module.exports = { io };
