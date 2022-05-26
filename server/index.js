@@ -9,6 +9,7 @@ const httpServer = createServer(app);
 
 const routerJS = require("./app/router");
 
+console.log("test");
 app.use(express.static("../client"));
 app.use(express.json({ limit: "50mb" }));
 app.use(
