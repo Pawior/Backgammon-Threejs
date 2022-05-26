@@ -1,14 +1,6 @@
 import { io } from "https://cdn.socket.io/4.4.1/socket.io.esm.min.js";
 
 const socket = io("http://localhost:3000");
-const userSocket = io("http://localhost:3000/user", {
-  auth: { token: "Test" },
-});
-
-userSocket.on("connect_error", (error) => {
-  displayMessage(error);
-});
-
 socket.on("connect", () => {
   displayMessage(`You connected to with id: ${socket.id}`);
 });
@@ -31,8 +23,16 @@ let btnSend = document.querySelector("#btn-send");
 btnSend.addEventListener("click", () => {
   let input = document.querySelector("#input-data");
   sendMessage(input.value);
+  getActivePiecesArr();
 });
+
 function sendMessage(message) {
   displayMessage(message);
   socket.emit("send-message", message);
+}
+socket.on("receive-active-pieces", (pieces) => {
+  console.log(pieces);
+});
+function getActivePiecesArr() {
+  socket.emit("request-active-pieces");
 }
