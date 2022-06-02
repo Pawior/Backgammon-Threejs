@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 let path = require("path");
 const controller = require("./controller");
+const mongoController = require("./mongoController");
 
 // const { registerView, loginView } = require("../controllers/loginController");
 const router = express.Router();
@@ -19,6 +20,9 @@ router.post("/getActivePiecesArr", controller.getActivePiecesArr);
 router.post("/getBeatenPiecesArr", controller.getBeatenPiecesArr);
 router.post("/addActivePiece", controller.addActivePiece);
 router.post("/addBeatenPiece", controller.addBeatenPiece);
+router.post("/mongo/addScore", (req, res) => {
+  mongoController.addScore(req, res);
+});
 
 // router.get("/", (req, res) => {
 //   console.log("cos dziala");

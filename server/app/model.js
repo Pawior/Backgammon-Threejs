@@ -14,6 +14,21 @@ let activePiecesArr = [
   { name: "piece13", position: { index: 19, level: 3 }, color: 1 },
   { name: "piece14", position: { index: 19, level: 4 }, color: 1 },
   { name: "piece15", position: { index: 19, level: 5 }, color: 1 },
+  { name: "piece16", position: { index: 24, level: 1 }, color: 2 },
+  { name: "piece17", position: { index: 24, level: 2 }, color: 2 },
+  { name: "piece18", position: { index: 13, level: 2 }, color: 2 },
+  { name: "piece19", position: { index: 13, level: 2 }, color: 2 },
+  { name: "piece20", position: { index: 13, level: 3 }, color: 2 },
+  { name: "piece21", position: { index: 13, level: 4 }, color: 2 },
+  { name: "piece22", position: { index: 13, level: 5 }, color: 2 },
+  { name: "piece23", position: { index: 8, level: 1 }, color: 2 },
+  { name: "piece24", position: { index: 8, level: 2 }, color: 2 },
+  { name: "piece25", position: { index: 8, level: 3 }, color: 2 },
+  { name: "piece26", position: { index: 6, level: 1 }, color: 2 },
+  { name: "piece27", position: { index: 6, level: 2 }, color: 2 },
+  { name: "piece28", position: { index: 6, level: 3 }, color: 2 },
+  { name: "piece29", position: { index: 6, level: 4 }, color: 2 },
+  { name: "piece30", position: { index: 6, level: 5 }, color: 2 },
 ];
 
 let beatenPiecesArr = [];

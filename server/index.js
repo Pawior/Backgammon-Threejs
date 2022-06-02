@@ -7,9 +7,6 @@ const { createServer } = require("http");
 const { Server } = require("socket.io");
 const httpServer = createServer(app);
 
-const routerJS = require("./app/router");
-
-console.log("test");
 app.use(express.static("../client"));
 app.use(express.json({ limit: "50mb" }));
 app.use(
@@ -18,6 +15,28 @@ app.use(
     limit: "50mb",
   })
 );
+/**======================
+ *    MONGO
+ *========================**/
+const mongoose = require("mongoose");
+
+mongoose
+  .connect(
+    `mongodb+srv://root:${encodeURIComponent(
+      process.env.mongodb_pass
+    )}@cluster0.w8ns7.mongodb.net/?retryWrites=true&w=majority`
+  )
+  .then(() => {
+    console.log("Connected to Mongoł");
+  })
+  .catch((err) => {
+    console.log("Error connecting to Mongoł " + err);
+  });
+
+const routerJS = require("./app/router");
+
+console.log("test");
+
 // app.use(express.static("static"));
 
 const io = new Server(httpServer, {

@@ -1,0 +1,8 @@
+POST http://localhost:3000/mongo/addScore HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Adam's record",
+    "place": 1,
+    "points": 1221,
+}
