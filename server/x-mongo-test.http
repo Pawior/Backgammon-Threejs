@@ -1,8 +1,27 @@
-POST http://localhost:3000/mongo/addScore HTTP/1.1
+POST http://localhost:3000/mongoaddScore HTTP/1.1
 content-type: application/json
 
 {
     "name": "Adam's record",
-    "place": 1,
     "points": 1221,
+    "comment": ""
+}
+
+###
+
+GET http://localhost:3000/getFullLeaderboard HTTP/1.1
+
+###
+
+
+POST http://localhost:3000/mongoaddScore HTTP/1.1
+content-type: application/json
+
+{
+    "name": "piece77",
+    "position": {
+      "index": 1,
+      "level": 1
+    },
+    "color": 1
 }

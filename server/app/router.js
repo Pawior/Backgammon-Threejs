@@ -14,15 +14,22 @@ const router = express.Router();
 // });
 
 // app.get("/", controller.getMain);
+router.use(express.urlencoded({ extended: true }));
 
-router.get("/", controller.getHomePage);
+router.use(express.json({ limit: "50mb" }));
+
 router.post("/getActivePiecesArr", controller.getActivePiecesArr);
 router.post("/getBeatenPiecesArr", controller.getBeatenPiecesArr);
 router.post("/addActivePiece", controller.addActivePiece);
 router.post("/addBeatenPiece", controller.addBeatenPiece);
-router.post("/mongo/addScore", (req, res) => {
-  mongoController.addScore(req, res);
+router.post("/mongoaddScore", express.json(), async function (req, res) {
+  console.log("Hop 1");
+  await mongoController.addScore(req, res);
+  console.log("Hop 2");
+  // res.json("data");
 });
+router.get("/getFullLeaderboard", mongoController.getFullLeaderboard);
+router.get("/", controller.getHomePage);
 
 // router.get("/", (req, res) => {
 //   console.log("cos dziala");

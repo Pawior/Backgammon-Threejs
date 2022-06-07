@@ -3,10 +3,10 @@ const { Schema, model } = mongoose;
 
 const leaderboardSchema = new Schema({
   name: String,
-  place: Number,
+  points: Number,
   timeStamp: Date,
   timeStampString: String,
-  points: Number,
+  comment: String,
 });
 
 const Leaderboard = model("leaderboard", leaderboardSchema);

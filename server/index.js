@@ -4,17 +4,9 @@ require("dotenv").config();
 
 const PORT = process.env.APP_PORT;
 const { createServer } = require("http");
-const { Server } = require("socket.io");
 const httpServer = createServer(app);
+const routerJS = require("./app/router");
 
-app.use(express.static("../client"));
-app.use(express.json({ limit: "50mb" }));
-app.use(
-  express.urlencoded({
-    extended: true,
-    limit: "50mb",
-  })
-);
 /**======================
  *    MONGO
  *========================**/
@@ -33,29 +25,39 @@ mongoose
     console.log("Error connecting to Mongoł " + err);
   });
 
-const routerJS = require("./app/router");
-
 console.log("test");
+
+/**----------------------
+ *    PARSER
+ *------------------------**/
+app.use(express.static("../client"));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: "50mb" }));
 
 // app.use(express.static("static"));
 
-const io = new Server(httpServer, {
-  cors: {
-    origin: ["http://127.0.0.1:5500"],
-  },
-});
+console.log("test 2");
+
+app.use("/", routerJS);
 
 httpServer.listen(PORT, () => {
   console.log("Listening on port " + PORT);
 });
+console.log("test 3");
 
-app.use("/", routerJS);
+// const { Server } = require("socket.io");
 
-const sendActivePiecesArr = require("./app/socketController");
-const onConnection = (socket) => {
-  sendActivePiecesArr(io, socket);
-};
+// const io = new Server(httpServer, {
+//   cors: {
+//     origin: ["http://127.0.0.1:5500"],
+//   },
+// });
 
-io.on("connection", onConnection);
+// const sendActivePiecesArr = require("./app/socketController");
+// const onConnection = (socket) => {
+//   sendActivePiecesArr(io, socket);
+// };
+
+// io.on("connection", onConnection);
 
 // module.exports = { io };
