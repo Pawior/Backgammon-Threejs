@@ -36,28 +36,25 @@ app.use(express.json({ limit: "50mb" }));
 
 // app.use(express.static("static"));
 
-console.log("test 2");
-
 app.use("/", routerJS);
 
 httpServer.listen(PORT, () => {
   console.log("Listening on port " + PORT);
 });
-console.log("test 3");
 
-// const { Server } = require("socket.io");
+const { Server } = require("socket.io");
 
-// const io = new Server(httpServer, {
-//   cors: {
-//     origin: ["http://127.0.0.1:5500"],
-//   },
-// });
+const io = new Server(httpServer, {
+  cors: {
+    origin: ["http://127.0.0.1:5500"],
+  },
+});
 
-// const sendActivePiecesArr = require("./app/socketController");
-// const onConnection = (socket) => {
-//   sendActivePiecesArr(io, socket);
-// };
+const sendActivePiecesArr = require("./app/socketController");
+const onConnection = (socket) => {
+  sendActivePiecesArr(io, socket);
+};
 
-// io.on("connection", onConnection);
+io.on("connection", onConnection);
 
-// module.exports = { io };
+module.exports = { io };
