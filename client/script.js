@@ -1,4 +1,11 @@
 import { io } from "https://cdn.socket.io/4.4.1/socket.io.esm.min.js";
+import {
+  addActivePieceFunc,
+  addBeatenPieceFunc,
+  getActivePiecesFunc,
+  getBeatenPiecesFunc,
+} from "./clientRequests/fetchFunctions.js";
+import { sendPiece } from "./clientRequests/socketFunctions.js";
 
 const socket = io("http://localhost:3000");
 socket.on("connect", () => {
@@ -23,16 +30,25 @@ let btnSend = document.querySelector("#btn-send");
 btnSend.addEventListener("click", () => {
   let input = document.querySelector("#input-data");
   sendMessage(input.value);
-  getActivePiecesArr();
+  socketGetActivePiecesArr();
 });
 
 function sendMessage(message) {
   displayMessage(message);
   socket.emit("send-message", message);
 }
-socket.on("receive-active-pieces", (pieces) => {
-  console.log(pieces);
-});
-function getActivePiecesArr() {
+
+function socketGetActivePiecesArr() {
   socket.emit("request-active-pieces");
 }
+
+let btnAddPionek = document.querySelector("#btn-add-pionek");
+btnAddPionek.addEventListener("click", () => {
+  addBeatenPieceFunc();
+  getBeatenPiecesFunc();
+});
+
+let btnSendMove = document.querySelector("#btn-send-move");
+btnSendMove.addEventListener("click", () => {
+  sendPiece({ id: 2, index: 77, position: "5_5" });
+});

@@ -6,6 +6,7 @@ const PORT = process.env.APP_PORT;
 const { createServer } = require("http");
 const httpServer = createServer(app);
 const routerJS = require("./app/router");
+// const path = require("path");
 
 /**======================
  *    MONGO
@@ -50,9 +51,9 @@ const io = new Server(httpServer, {
   },
 });
 
-const sendActivePiecesArr = require("./app/socketController");
+const socketController = require("./app/socketController");
 const onConnection = (socket) => {
-  sendActivePiecesArr(io, socket);
+  socketController(io, socket);
 };
 
 io.on("connection", onConnection);

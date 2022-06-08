@@ -6,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script defer src="./script.js" type="module"></script>
+    <script
+      defer
+      src="./clientRequests/socketFunctions.js"
+      type="module"
+    ></script>
+    <script
+      defer
+      src="./clientRequests/fetchFunctions.js"
+      type="module"
+    ></script>
     <style>
       #container {
         display: flex;
@@ -37,6 +47,8 @@
       <div id="div-info"></div>
       <input type="text" id="input-data" />
       <button id="btn-send">Send</button>
+      <button id="btn-add-pionek">Add Pionek</button>
+      <button id="btn-send-move">Send Pionek Move</button>
     </div>
   </body>
 </html>
