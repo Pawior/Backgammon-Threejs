@@ -6,7 +6,9 @@ module.exports = {
   getHomePage: (req, res) => {
     console.log(activePiecesArr);
     console.log("halo");
-    res.sendFile(path.join(__dirname, "views", "home.html"));
+    console.log(__dirname);
+    // res.sendFile(path.join( __dirname, "views", "home.html"));
+    res.sendFile(path.join(__dirname, "..", "..", "client", "home.html"));
   },
   getActivePiecesArr: (req, res) => {
     res.send(activePiecesArr);
