@@ -33,4 +33,6 @@ let activePiecesArr = [
 
 let beatenPiecesArr = [];
 
-module.exports = { activePiecesArr, beatenPiecesArr };
+let users = [];
+
+module.exports = { activePiecesArr, beatenPiecesArr, users };

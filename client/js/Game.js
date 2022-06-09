@@ -2,6 +2,8 @@ import checkers from "./game/data/checkers.js";
 import { handleTriangleClick } from "./game/clickHandlers/triangleClickHandler.js";
 import { handlecheckerClick } from "./game/clickHandlers/checkerClickHandler.js";
 import Models from "./Models.js";
+import Ui from "./Ui.js";
+// import socketIo from "../libs/socket.io.js";
 
 class Game {
   constructor() {
@@ -11,6 +13,10 @@ class Game {
     // this.selectedCheckerColor = "255210076";
     this.isClickingAllowed = true;
     this.isFinishingPhase = false;
+
+    this.serverUrl = "localhost:3000";
+
+    Ui.handleLoginScreen(this.setPlayersColor, this.setGameState);
 
     let models = new Models();
     models.initalizeScene();
@@ -135,6 +141,12 @@ class Game {
     console.log("you won");
   };
 
+  handleOpponetsMove = (opponentsMove, checkersData) => {
+    this.checkers = checkersData;
+
+    // TODO: moving checker
+  };
+
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 
   getCheckers() {
@@ -188,6 +200,14 @@ class Game {
 
   setIsClickingAllowed = (isClickingAllowed) => {
     this.isClickingAllowed = isClickingAllowed;
+  };
+
+  setPlayersColor = (color) => {
+    this.playersColor = color;
+  };
+
+  setGameState = (state) => {
+    this.gameState = state;
   };
 }
 

@@ -7,13 +7,27 @@
     <link rel="icon" href="images/icons/icon.svg" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
+    <script src="libs/socket.io.js"></script>
     <script src="libs/three.js"></script>
     <script src="libs/tween.umd.js"></script>
     <script defer type="module" src="main.js"></script>
     <link rel="stylesheet" href="style.css" /
   </head>
   <body>
+    <section id="login-section">
+      <form>
+        <label for="login">
+          Login:
+          <input id="login" type="text" />
+        </label>
+        <button id="login-button">Login</button>
+      </form>
+    </section>
+
+    <div id="waiting-screen"></div>
+
     <div id="results-container"></div>
+
     <button id="dice">
       <img src="images/dice/3.svg" alt="dice image" />
     </button>

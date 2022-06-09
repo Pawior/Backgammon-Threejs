@@ -1,5 +1,6 @@
 let { activePiecesArr } = require("./model");
 let { beatenPiecesArr } = require("./model");
+let { users } = require("./model");
 let path = require("path");
 
 module.exports = {
@@ -26,4 +27,6 @@ module.exports = {
     beatenPiecesArr.push(req.body);
     res.send({ info: `dodaje${req.body}` });
   },
+  //
+  logIn: (req, res) => {},
 };
