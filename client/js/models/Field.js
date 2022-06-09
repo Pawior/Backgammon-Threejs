@@ -1,14 +1,24 @@
 class Field extends THREE.Object3D {
-  constructor(trianglesColor, boardColor, width, height, level, index) {
+  constructor(
+    trianglesColor,
+    boardColor,
+    width,
+    height,
+    level,
+    index,
+    myPosition
+  ) {
     super();
 
     this.trianglesColor = trianglesColor;
     this.boardColor = boardColor;
     this.width = width;
     this.height = height;
-
     this.level = level;
     this.index = index;
+    this.myPosition = myPosition;
+
+    this.name = "field";
 
     this.createField();
   }
@@ -36,7 +46,7 @@ class Field extends THREE.Object3D {
     let geometry = new THREE.ShapeGeometry(shape);
 
     const color = isBacground ? this.boardColor : this.trianglesColor;
-    let material = new THREE.MeshBasicMaterial({ color: color });
+    let material = new THREE.MeshToonMaterial({ color: color });
 
     let mesh = new THREE.Mesh(geometry, material);
     mesh.name = "triangle";
@@ -80,6 +90,10 @@ class Field extends THREE.Object3D {
 
   getIndex() {
     return this.index;
+  }
+
+  getMyPosition() {
+    return this.myPosition;
   }
 }
 

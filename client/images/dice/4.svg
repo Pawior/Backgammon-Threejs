@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="119.788mm"
+   height="119.788mm"
+   viewBox="0 0 119.788 119.788"
+   version="1.1"
+   id="svg8">
+  <defs
+     id="defs2" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1">
+    <path
+       id="rect10"
+       style="fill:#000000;fill-rule:evenodd;stroke-width:1"
+       d="M 65.083984 0 C 29.027655 0 0 29.027655 0 65.083984 L 0 387.65625 C 0 423.71258 29.027655 452.74023 65.083984 452.74023 L 387.6582 452.74023 C 423.71453 452.74023 452.74219 423.71258 452.74219 387.65625 L 452.74219 65.083984 C 452.74219 29.027655 423.71453 0 387.6582 0 L 65.083984 0 z M 82.341797 24.220703 L 370.40039 24.220703 C 402.5987 24.220703 428.51953 50.14349 428.51953 82.341797 L 428.51953 370.39844 C 428.51953 402.59674 402.5987 428.51953 370.40039 428.51953 L 82.341797 428.51953 C 50.14349 428.51953 24.220703 402.59674 24.220703 370.39844 L 24.220703 82.341797 C 24.220703 50.14349 50.14349 24.220703 82.341797 24.220703 z "
+       transform="scale(0.26458333)" />
+    <g
+       id="g264"
+       transform="rotate(90,49.310669,70.477327)">
+      <ellipse
+         style="fill:#000000;stroke-width:0.264583"
+         id="path34"
+         cx="59.894001"
+         cy="81.060661"
+         rx="8.4361439"
+         ry="8.4361181" />
+      <ellipse
+         style="fill:#000000;stroke-width:0.264583"
+         id="path34-7"
+         cx="59.894001"
+         cy="38.727329"
+         rx="8.4361439"
+         ry="8.4361181" />
+    </g>
+    <g
+       id="g264-6"
+       transform="rotate(90,70.47733,49.310666)">
+      <ellipse
+         style="fill:#000000;stroke-width:0.264583"
+         id="path34-9"
+         cx="59.894001"
+         cy="81.060661"
+         rx="8.4361439"
+         ry="8.4361181" />
+      <ellipse
+         style="fill:#000000;stroke-width:0.264583"
+         id="path34-7-2"
+         cx="59.894001"
+         cy="38.727329"
+         rx="8.4361439"
+         ry="8.4361181" />
+    </g>
+  </g>
+</svg>

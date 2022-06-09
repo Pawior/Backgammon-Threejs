@@ -13,7 +13,7 @@ class Stand extends THREE.Mesh {
 
   initailize = () => {
     this.geometry = new THREE.BoxGeometry(this.width, this.height, this.depth);
-    this.material = new THREE.MeshBasicMaterial({ color: this.color });
+    this.material = new THREE.MeshToonMaterial({ color: this.color });
   };
 
   getDepth() {

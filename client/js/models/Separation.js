@@ -12,7 +12,7 @@ class Separation extends THREE.Mesh {
 
   initailize = () => {
     this.geometry = new THREE.PlaneGeometry(this.width, this.height);
-    this.material = new THREE.MeshBasicMaterial({ color: this.color });
+    this.material = new THREE.MeshToonMaterial({ color: this.color });
   };
 }
 

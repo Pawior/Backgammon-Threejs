@@ -3,8 +3,20 @@ import Separation from "./Separation.js";
 import Stand from "./Stand.js";
 
 class Board extends THREE.Object3D {
-  constructor(level) {
+  constructor(
+    xSeparationWidth,
+    ySeparationHeight,
+    standPadding,
+    fieldWidth,
+    fieldHeight
+  ) {
     super();
+
+    this.xSeparationWidth = xSeparationWidth;
+    this.ySeparationHeight = ySeparationHeight;
+    this.standPadding = standPadding;
+    this.fieldWidth = fieldWidth;
+    this.fieldHeight = fieldHeight;
 
     this.width = 0;
 
@@ -19,14 +31,6 @@ class Board extends THREE.Object3D {
     this.trianglesColor2 = 0x4d4c7d;
     this.boardColor = 0xe9d5ca;
     this.standColor = 0x363062;
-
-    this.xSeparationWidth = 3;
-    this.ySeparationHeight = 5;
-
-    this.standPadding = 2.5;
-
-    this.fieldWidth = 3;
-    this.fieldHeight = 10;
 
     this.sections = [
       { level: 1, index: 1 },
@@ -51,6 +55,8 @@ class Board extends THREE.Object3D {
     this.addFieldsSections(this.trianglesColor, this.boardColor);
     this.addSeparations();
 
+    this.name = "board";
+
     this.calculateWidthAndHeight();
 
     this.addStand();
@@ -70,7 +76,9 @@ class Board extends THREE.Object3D {
         this.boardColor,
         this.fieldWidth,
         this.fieldHeight,
-        startIndexNumber
+        startIndexNumber,
+        this.xSeparationWidth,
+        this.ySeparationHeight
       );
       this.fieldsSectionWidth = fieldsSection.getWidth();
       this.fieldsSectionHeight = fieldsSection.getHeight();
