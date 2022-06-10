@@ -1,4 +1,4 @@
-import { sleep, getField, getFilledArr } from "./utils.js";
+import { getField } from "./utils.js";
 import Board from "./models/Board.js";
 import Checker from "./models/Checker.js";
 

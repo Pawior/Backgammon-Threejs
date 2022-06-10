@@ -52,4 +52,4 @@ function setMeshColor(mesh, color) {
   mesh.material.color.b = blue;
 }
 
-export { sleep, getField, getFilledArr, setMeshColor };
+export { sleep, getField, setMeshColor };
