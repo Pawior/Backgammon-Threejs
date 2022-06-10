@@ -37,4 +37,20 @@ module.exports = {
 
     res.json({ color: color });
   },
+  handleState: (req, res) => {
+    let state = req.body.state;
+    if (state === "waiting-for-opponent") {
+      res.send({ message: "showLoadingScreen" });
+    } else if (state === "your-turn") {
+      res.send({ message: "hideWaitingScreen" });
+    } else if (state === "opponents-turn") {
+      res.send({ message: "showWaitingScreen" });
+    } else if (state === "you-won") {
+      res.send({ message: "victory" });
+    } else if (state === "you-lost") {
+      res.send({ message: "lost" });
+    } else {
+      res.error({ message: "cant find that status" });
+    }
+  },
 };

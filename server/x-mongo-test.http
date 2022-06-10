@@ -11,8 +11,17 @@ content-type: application/json
 
 GET http://localhost:3000/getFullLeaderboard HTTP/1.1
 
-###
 
+###  userStat
+POST http://localhost:3000/mongoaddUserStat HTTP/1.1
+content-type: application/json
+
+{
+     "userName": "userAdam",
+     "wins": 2,
+     "loses": 5
+}
+###
 
 POST http://localhost:3000/mongoaddScore HTTP/1.1
 content-type: application/json
@@ -25,3 +34,22 @@ content-type: application/json
     },
     "color": 1
 }
+
+###
+
+POST http://localhost:3000/endGame HTTP/1.1
+content-type: application/json
+
+{
+      "users": {
+        "firstUserName": "Kasia",
+        "secondUserName": "Asia"
+      },
+      "winner": "Kasia",
+      "loser": "Asia"
+}
+
+###
+
+GET http://localhost:3000/getGamesHistory HTTP/1.1
+
