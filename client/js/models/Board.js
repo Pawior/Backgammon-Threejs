@@ -188,6 +188,8 @@ class Board extends THREE.Object3D {
     this.height = this.fieldsSectionHeight * 2 + this.ySeparationHeight;
   };
 
+  //////////////////////////////////
+
   getHeight() {
     return this.height;
   }

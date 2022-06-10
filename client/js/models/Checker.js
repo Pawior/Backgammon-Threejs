@@ -29,6 +29,8 @@ class Checker extends THREE.Mesh {
     this.material = new THREE.MeshToonMaterial({ color: color });
   };
 
+  /////////////////////////////////////////
+
   getMyId() {
     return this.myId;
   }
@@ -68,18 +70,6 @@ class Checker extends THREE.Mesh {
   setIsOutOfGame = (isOutOfGame) => {
     this.isOutOfGame = isOutOfGame;
   };
-
-  //   set position(p) {
-  //     this.position = p;
-  //   }
-
-  //   getPosition = () => {
-  //     return this.position;
-  //   };
-
-  //   setPosition(position) {
-  //     this.position = position;
-  //   }
 }
 
 export default Checker;

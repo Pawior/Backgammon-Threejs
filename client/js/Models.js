@@ -37,7 +37,6 @@ class Models {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
 
     // board
-
     this.xSeparationWidth = 3;
     this.ySeparationHeight = 5;
     this.standPadding = 2.5;
@@ -47,13 +46,9 @@ class Models {
     this.checkerWidth = 2;
     this.checkerMargin = 0.1;
 
-    // helper
-    // const axesHelper = new THREE.AxesHelper(100);
-    // this.scene.add(axesHelper);
-
     document.getElementById("root").append(this.renderer.domElement);
 
-    this.checkersLeveled = getFilledArr(0, 24, []);
+    this.checkersLeveled = Array(24).fill(0);
   };
 
   addBoard = (addFieldPosition) => {
@@ -124,6 +119,8 @@ class Models {
       this.renderer.setSize(window.innerWidth, window.innerHeight);
     });
   };
+
+  /////////////////////////////////
 
   getScene() {
     return this.scene;

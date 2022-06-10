@@ -104,8 +104,7 @@ class FieldsSection extends THREE.Object3D {
     }
   };
 
-  ///// getters like methods
-
+  /////////////////////////////
   getHeight() {
     return this.height;
   }

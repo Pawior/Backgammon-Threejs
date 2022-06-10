@@ -10,13 +10,6 @@ export default class Net {
     return info;
   }
 
-  // static monitorAndHandleGameState(setGameState) {
-  //   const socket = io("/");
-  //   socket.on("state-change", (opponentsMoves, checkersData, state) => {
-  //     setGameState(state);
-  //   });
-  // }
-
   static monitorState(handleOpponentMove) {
     const socket = io("/");
     socket.on("state-change", (state, move) => {

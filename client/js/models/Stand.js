@@ -16,6 +16,8 @@ class Stand extends THREE.Mesh {
     this.material = new THREE.MeshToonMaterial({ color: this.color });
   };
 
+  ////////////////////////////
+
   getDepth() {
     return this.depth;
   }

@@ -76,6 +76,8 @@ class Field extends THREE.Object3D {
     }
   };
 
+  /////////////////////////////////
+
   getHeight() {
     return this.height;
   }
