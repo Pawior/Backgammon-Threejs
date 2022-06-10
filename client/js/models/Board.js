@@ -8,7 +8,8 @@ class Board extends THREE.Object3D {
     ySeparationHeight,
     standPadding,
     fieldWidth,
-    fieldHeight
+    fieldHeight,
+    addFieldPosition
   ) {
     super();
 
@@ -52,7 +53,7 @@ class Board extends THREE.Object3D {
       },
     ];
 
-    this.addFieldsSections(this.trianglesColor, this.boardColor);
+    this.addFieldsSections(addFieldPosition);
     this.addSeparations();
 
     this.name = "board";
@@ -65,7 +66,7 @@ class Board extends THREE.Object3D {
     this.centerBoard();
   }
 
-  addFieldsSections = () => {
+  addFieldsSections = (addFieldPosition) => {
     for (let i = 0; i < this.sections.length; i++) {
       const startIndexNumber = i * 6 + 1;
 
@@ -78,7 +79,8 @@ class Board extends THREE.Object3D {
         this.fieldHeight,
         startIndexNumber,
         this.xSeparationWidth,
-        this.ySeparationHeight
+        this.ySeparationHeight,
+        addFieldPosition
       );
       this.fieldsSectionWidth = fieldsSection.getWidth();
       this.fieldsSectionHeight = fieldsSection.getHeight();

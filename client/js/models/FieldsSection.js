@@ -10,7 +10,8 @@ class FieldsSection extends THREE.Object3D {
     fieldHeight,
     startIndexNumber,
     xSeparationWidth,
-    ySeparationHeight
+    ySeparationHeight,
+    addFieldPosition
   ) {
     super();
 
@@ -26,7 +27,7 @@ class FieldsSection extends THREE.Object3D {
 
     this.width = 0;
 
-    this.addFields();
+    this.addFields(addFieldPosition);
 
     this.name = "fieldsSection";
 
@@ -36,12 +37,13 @@ class FieldsSection extends THREE.Object3D {
     }
   }
 
-  addFields = () => {
+  addFields = (addFieldPosition) => {
     for (let i = 0; i < 6; i++) {
       const color = i % 2 === 1 ? this.trianglesColor1 : this.trianglesColor2;
 
       const index = this.startIndexNumber + i;
       const myPosition2d = this.getMyPosition(index);
+      addFieldPosition({ x: myPosition2d.x, z: myPosition2d.z });
 
       let field = new Field(
         color,

@@ -1,21 +1,18 @@
 import Net from "./Net.js";
 
 export default class Ui {
-  static async handleLoginScreen(setPlayersColor, setGameState) {
+  static handleLoginScreen(setPlayersColor, setGameState) {
     const loginButton = document.querySelector("#login-button");
-    loginButton.addEventListener("click", (e) => {
+    loginButton.addEventListener("click", async (e) => {
       e.preventDefault();
 
       const loginSection = document.querySelector("#login-section");
       loginSection.style.display = "none";
 
-      // const startInfo = await Net.getStartInfo(url);
-      if (startInfo.state !== "your-turn") {
-        this.showWaitingScreen();
-      }
-
+      const startInfo = await Net.logIn();
       setPlayersColor(startInfo.color);
-      setGameState(startInfo.state);
+      this.showWaitingScreen();
+      // setGameState(startInfo.state);
 
       Net.monitorAndHandleGameState(setGameState);
     });

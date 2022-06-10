@@ -31,7 +31,7 @@ router.post("/mongoaddScore", express.json(), async function (req, res) {
 router.get("/getFullLeaderboard", mongoController.getFullLeaderboard);
 router.get("/", controller.getHomePage);
 
-router.get("/logIn", controller.logIn);
+router.post("/logIn", controller.logIn);
 
 // router.get("/", (req, res) => {
 //   console.log("cos dziala");

@@ -1,6 +1,6 @@
 let { activePiecesArr } = require("./model");
 let { beatenPiecesArr } = require("./model");
-let { users } = require("./model");
+let { users, games } = require("./model");
 let path = require("path");
 
 module.exports = {
@@ -28,5 +28,13 @@ module.exports = {
     res.send({ info: `dodaje${req.body}` });
   },
   //
-  logIn: (req, res) => {},
+  logIn: (req, res) => {
+    const nick = req.body.nick;
+    const color = users.length + 1;
+    users.push({ nick: nick, color: color });
+
+    console.log(users);
+
+    res.json({ color: color });
+  },
 };

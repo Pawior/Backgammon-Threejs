@@ -3,12 +3,15 @@ import { handleTriangleClick } from "./game/clickHandlers/triangleClickHandler.j
 import { handlecheckerClick } from "./game/clickHandlers/checkerClickHandler.js";
 import Models from "./Models.js";
 import Ui from "./Ui.js";
+import showMove from "./game/opponentsMove/showMove.js";
+import updateData from "./game/opponentsMove/updateData.js";
 // import socketIo from "../libs/socket.io.js";
 
 class Game {
   constructor() {
     this.checkers = checkers;
-    this.checkersModels = [];
+    this.checkerModels = [];
+    this.fieldsPositions = [];
     this.selectedCheckerColor = 0xffd24c;
     // this.selectedCheckerColor = "255210076";
     this.isClickingAllowed = true;
@@ -21,15 +24,16 @@ class Game {
     let models = new Models();
     models.initalizeScene();
     models.handleWindowResize();
-    models.addBoard();
+    models.addBoard(this.addFieldPosition);
     models.addCheckers(this.checkers, this.addCheckerModel);
     models.render();
 
     this.scene = models.getScene();
     this.camera = models.getCamera();
+    this.checkerWidth = models.getCheckerWidth();
+    this.checkerMargin = models.getCheckerMargin();
 
     this.addClickListener(models);
-
     this.addDiceListener(this);
 
     this.playersColor = 1;
@@ -58,7 +62,7 @@ class Game {
             models.getCheckerWidth(),
             models.getCheckerMargin(),
             this.changeCheckerPosition,
-            this.checkersModels,
+            this.checkerModels,
             this.setAvailableMoves,
             this.isClickingAllowed,
             this.setIsClickingAllowed,
@@ -141,10 +145,16 @@ class Game {
     console.log("you won");
   };
 
-  handleOpponetsMove = (opponentsMove, checkersData) => {
-    this.checkers = checkersData;
-
-    // TODO: moving checker
+  handleOpponetsMove = (opponentsMove) => {
+    updateData(opponentsMove, this.checkers, this.checkerModels);
+    showMove(
+      opponentsMove,
+      this.checkers,
+      this.checkerModels,
+      this.checkerWidth,
+      this.checkerMargin,
+      this.fieldsPositions
+    );
   };
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -195,7 +205,7 @@ class Game {
   };
 
   addCheckerModel = (checkerModel) => {
-    this.checkersModels.push(checkerModel);
+    this.checkerModels.push(checkerModel);
   };
 
   setIsClickingAllowed = (isClickingAllowed) => {
@@ -208,6 +218,10 @@ class Game {
 
   setGameState = (state) => {
     this.gameState = state;
+  };
+
+  addFieldPosition = (fieldPosition) => {
+    this.fieldsPositions.push(fieldPosition);
   };
 }
 

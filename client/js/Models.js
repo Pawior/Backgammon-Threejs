@@ -56,13 +56,14 @@ class Models {
     this.checkersLeveled = getFilledArr(0, 24, []);
   };
 
-  addBoard = () => {
+  addBoard = (addFieldPosition) => {
     let board = new Board(
       this.xSeparationWidth,
       this.ySeparationHeight,
       this.standPadding,
       this.fieldWidth,
-      this.fieldHeight
+      this.fieldHeight,
+      addFieldPosition
     );
     this.scene.add(board);
   };

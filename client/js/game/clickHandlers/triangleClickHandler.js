@@ -8,7 +8,7 @@ function handleTriangleClick(
   checkerWidth,
   checkerMargin,
   changeCheckerPosition,
-  checkersModels,
+  checkerModels,
   setAvailableMoves,
   isClickingAllowed,
   setIsClickingAllowed,
@@ -31,31 +31,29 @@ function handleTriangleClick(
     if (fieldIndex !== move.index) continue;
     setAvailableMoves([]);
 
-    let moveTo;
     const fieldPosition = field.getMyPosition();
-
+    let yOffset;
     if (move.type === "move") {
-      const yOffset = getYOffsetMove(
+      yOffset = getYOffsetMove(
         field.getLevel(),
         checkersData,
         field.getIndex(),
         checkerWidth,
         checkerMargin
       );
-
-      moveTo = { x: fieldPosition.x, z: fieldPosition.z + yOffset };
     } else if (move.type === "capture") {
-      const yOffset = getYOffsetCapture(field.getLevel(), checkerWidth);
-      moveTo = { x: fieldPosition.x, z: fieldPosition.z + yOffset };
+      yOffset = getYOffsetCapture(field.getLevel(), checkerWidth);
 
       captureChecker(
         fieldIndex,
         checkersData,
-        checkersModels,
+        checkerModels,
         checkerWidth,
         checkerMargin
       );
     }
+
+    const moveTo = { x: fieldPosition.x, z: fieldPosition.z + yOffset };
 
     moveChecker(selectedChecker, moveTo);
 
@@ -116,7 +114,7 @@ function getYOffsetCapture(fieldLevel, checkerWidth) {
 function captureChecker(
   fieldIndex,
   checkersData,
-  checkersModels,
+  checkerModels,
   checkerWidth,
   checkerMargin
 ) {
@@ -124,7 +122,7 @@ function captureChecker(
   //   (checker) => checker.position.index === fieldIndex && !checkerData.position.isOnBar
   // )[0];
 
-  const checkerToCapture = checkersModels.filter(
+  const checkerToCapture = checkerModels.filter(
     (checker) => checker.getIndex() === fieldIndex && !checker.getIsOnBar()
   )[0];
 
@@ -204,4 +202,10 @@ function getNewCheckerLevel(checkersData, fieldIndex) {
   return chekersOnField.length + 1;
 }
 
-export { handleTriangleClick, moveChecker };
+export {
+  handleTriangleClick,
+  moveChecker,
+  getYOffsetMove,
+  getYOffsetCapture,
+  captureChecker,
+};

@@ -33,6 +33,22 @@ let activePiecesArr = [
 
 let beatenPiecesArr = [];
 
-let users = [];
+let moves = [];
 
-module.exports = { activePiecesArr, beatenPiecesArr, users };
+let games = {
+  game1: {
+    users: [],
+    checkers: [],
+    moves: [
+      {
+        id: 1,
+        newPosition: { index: 1, level: 1 },
+        finalMove: true,
+      },
+    ],
+  },
+  game2: {},
+};
+let users = {};
+
+module.exports = { activePiecesArr, beatenPiecesArr, users, games };
