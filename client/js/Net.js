@@ -1,4 +1,4 @@
-import handleStateChange from "./game/handleStateChange";
+import handleStateChange from "./net/handleStateChange.js";
 
 export default class Net {
   static async logIn(nick) {

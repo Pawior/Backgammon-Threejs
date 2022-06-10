@@ -9,12 +9,14 @@ export default class Ui {
       const loginSection = document.querySelector("#login-section");
       loginSection.style.display = "none";
 
-      const startInfo = await Net.logIn();
+      const nickInput = document.querySelector("#nick");
+      const nick = nickInput.value;
+      const startInfo = await Net.logIn(nick);
       setPlayersColor(startInfo.color);
       this.showWaitingScreen();
       // setGameState(startInfo.state);
 
-      Net.monitorAndHandleGameState(setGameState);
+      Net.monitorState(setGameState);
     });
   }
 

@@ -1,11 +1,15 @@
-import checkers from "./game/data/checkers.js";
+// data
+import checkers from "./data/checkers.js";
+
+// handle click
 import { handleTriangleClick } from "./game/clickHandlers/triangleClickHandler.js";
 import { handlecheckerClick } from "./game/clickHandlers/checkerClickHandler.js";
+
+//
 import Models from "./Models.js";
 import Ui from "./Ui.js";
-import showMove from "./game/opponentsMove/showMove.js";
-import updateData from "./game/opponentsMove/updateData.js";
-// import socketIo from "../libs/socket.io.js";
+
+import addDiceListener from "./game/addDiceListener.js";
 
 class Game {
   constructor() {
@@ -17,10 +21,10 @@ class Game {
     this.isClickingAllowed = true;
     this.isFinishingPhase = false;
 
-    this.serverUrl = "localhost:3000";
-
+    // Ui
     Ui.handleLoginScreen(this.setPlayersColor, this.setGameState);
 
+    // Models
     let models = new Models();
     models.initalizeScene();
     models.handleWindowResize();
@@ -34,9 +38,14 @@ class Game {
     this.checkerMargin = models.getCheckerMargin();
 
     this.addClickListener(models);
-    this.addDiceListener(this);
+    addDiceListener(
+      this.clearNumbersThrown,
+      this.addNumberThrown,
+      this.getNumbersThrown
+    );
 
     this.playersColor = 1;
+    this.numbersThrown = [];
   }
 
   addClickListener = (models) => {
@@ -87,33 +96,6 @@ class Game {
     });
   };
 
-  addDiceListener = (game) => {
-    const dice = document.querySelector("#dice");
-
-    dice.addEventListener("click", () => {
-      game.clearNumbersThrown();
-      const number1 = Math.floor(Math.random() * 6 + 1);
-      const number2 = Math.floor(Math.random() * 6 + 1);
-      game.addNumberThrown(number1);
-      game.addNumberThrown(number2);
-      const lastNumberThrown = number2;
-
-      let diceImage = dice.querySelector("img");
-      diceImage.src = `images/dice/${lastNumberThrown}.svg`;
-
-      // adding results
-      let resultsContainer = document.querySelector("#results-container");
-      resultsContainer.innerHTML = "";
-
-      game.getNumbersThrown().forEach((number) => {
-        let result = document.createElement("img");
-        result.src = `images/dice/${number}.svg`;
-        result.alt = "dice image";
-        resultsContainer.append(result);
-      });
-    });
-  };
-
   checkAndHandleFinishingPhase = (color, checkersData) => {
     const indexToCheckForColor = [
       { start: 1, end: 18 },
@@ -145,35 +127,23 @@ class Game {
     console.log("you won");
   };
 
-  handleOpponetsMove = (opponentsMove) => {
-    updateData(opponentsMove, this.checkers, this.checkerModels);
-    showMove(
-      opponentsMove,
-      this.checkers,
-      this.checkerModels,
-      this.checkerWidth,
-      this.checkerMargin,
-      this.fieldsPositions
-    );
-  };
-
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 
   getCheckers() {
     return this.checkers;
   }
 
-  getNumbersThrown() {
+  getNumbersThrown = () => {
     return this.numbersThrown;
-  }
+  };
 
-  addNumberThrown(number) {
+  addNumberThrown = (number) => {
     this.numbersThrown.push(number);
-  }
+  };
 
-  clearNumbersThrown() {
+  clearNumbersThrown = () => {
     this.numbersThrown = [];
-  }
+  };
 
   getAvailableMoves = () => {
     return this.availableMoves;

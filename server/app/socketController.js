@@ -18,6 +18,6 @@ let { activePiecesArr } = require("./model");
 
 // };
 
-function sendState() {}
+module.exports = (io, socker) => {};
 
 // Pionek, index, newPosition

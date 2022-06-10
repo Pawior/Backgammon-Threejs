@@ -2,9 +2,9 @@ import {
   getYOffsetMove,
   getYOffsetCapture,
   captureChecker,
-} from "../clickHandlers/triangleClickHandler.js";
+} from "../../game/clickHandlers/triangleClickHandler.js";
 
-export function showMove(
+export default function showMove(
   move,
   checkersData,
   checkerModels,

@@ -49,6 +49,6 @@ let games = {
   },
   game2: {},
 };
-let users = {};
+let users = [];
 
 module.exports = { activePiecesArr, beatenPiecesArr, users, games };
