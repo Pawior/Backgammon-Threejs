@@ -22,7 +22,15 @@ class Game {
     this.isFinishingPhase = false;
 
     // Ui
-    Ui.handleLoginScreen(this.setPlayersColor, this.setGameState);
+    Ui.handleLoginScreen(
+      this.setPlayersColor,
+      this.setGameState,
+      this.checkers,
+      this.checkerModels,
+      this.checkerWidth,
+      this.checkerMargin,
+      this.fieldsPositions
+    );
 
     // Models
     let models = new Models();
@@ -169,7 +177,7 @@ class Game {
 
         this.checkers[i].position.isOnBar = false;
 
-        break;
+        return this.checkers[i];
       }
     }
   };

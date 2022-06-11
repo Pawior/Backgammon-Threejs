@@ -17,12 +17,12 @@ export default function showMove(
   )[0];
   let yOffset;
 
-  const fieldLevel = move.position.index > 12 ? 2 : 1;
+  const fieldLevel = move.newPosition.index > 12 ? 2 : 1;
   if (move.type === "move") {
     yOffset = getYOffsetMove(
       fieldLevel,
       checkersData,
-      move.position.index,
+      move.newPosition.index,
       checkerWidth,
       checkerMargin
     );
@@ -30,14 +30,14 @@ export default function showMove(
     yOffset = getYOffsetCapture(fieldLevel, checkerWidth);
 
     captureChecker(
-      move.position.index,
+      move.newPosition.index,
       checkersData,
       checkerModels,
       checkerWidth,
       checkerMargin
     );
 
-    const fieldPosition = fieldsPositions[move.position.index - 1];
+    const fieldPosition = fieldsPositions[move.newPosition.index - 1];
 
     const moveTo = { x: fieldPosition.x, z: fieldPosition.z + yOffset };
 

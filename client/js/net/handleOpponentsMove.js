@@ -1,14 +1,21 @@
-import showMove from "./net/opponentsMove/showMove.js";
-import updateData from "./net/opponentsMove/updateData.js";
+import showMove from "./opponentsMove/showMove.js";
+import updateData from "./opponentsMove/updateData.js";
 
-export default handleOpponetsMove = () => {
-  updateData(opponentsMove, this.checkers, this.checkerModels);
+export default function handleOpponetsMove(
+  opponentsMove,
+  checkersData,
+  checkerModels,
+  checkerWidth,
+  checkerMargin,
+  fieldsPositions
+) {
+  updateData(opponentsMove, checkersData, checkerModels);
   showMove(
     opponentsMove,
-    this.checkers,
-    this.checkerModels,
-    this.checkerWidth,
-    this.checkerMargin,
-    this.fieldsPositions
+    checkersData,
+    checkerModels,
+    checkerWidth,
+    checkerMargin,
+    fieldsPositions
   );
-};
+}
