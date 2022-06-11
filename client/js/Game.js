@@ -49,7 +49,9 @@ class Game {
     addDiceListener(
       this.clearNumbersThrown,
       this.addNumberThrown,
-      this.getNumbersThrown
+      this.getNumbersThrown,
+      this.movesLeft,
+      this.setMovesLeft
     );
 
     this.playersColor = 1;
@@ -204,7 +206,9 @@ class Game {
     this.fieldsPositions.push(fieldPosition);
   };
 
-  set;
+  setMovesLeft(number) {
+    this.movesLeft = number;
+  }
 }
 
 export default Game;
