@@ -13,8 +13,12 @@ function handleTriangleClick(
   setAvailableMoves,
   isClickingAllowed,
   setIsClickingAllowed,
-  checkAndHandleFinishingPhase
+  checkAndHandleFinishingPhase,
+  movesLeft,
+  setMovesLeft
 ) {
+  if (movesLeft <= 0) return;
+
   if (!isClickingAllowed) return;
   setIsClickingAllowed(false);
 
@@ -60,14 +64,15 @@ function handleTriangleClick(
 
     moveChecker(selectedChecker, moveTo);
 
-    // saving new checker data
-
+    // saving new checker date
     const newCheckerLevel = getNewCheckerLevel(checkersData, fieldIndex);
     const checkerData = changeCheckerPosition(
       selectedChecker.getMyId(),
       fieldIndex,
       newCheckerLevel
     );
+
+    setMovesLeft(movesLeft - 1);
 
     selectedChecker.setIndex(fieldIndex);
     selectedChecker.setLevel(newCheckerLevel);
