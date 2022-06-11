@@ -8,7 +8,8 @@ export default class Ui {
     checkerModels,
     checkerWidth,
     checkerMargin,
-    fieldsPositions
+    fieldsPositions,
+    checkAndHandleWin
   ) {
     const loginButton = document.querySelector("#login-button");
     loginButton.addEventListener("click", async (e) => {
@@ -36,7 +37,8 @@ export default class Ui {
         checkerModels,
         checkerWidth,
         checkerMargin,
-        fieldsPositions
+        fieldsPositions,
+        checkAndHandleWin
       );
     });
   }

@@ -1,5 +1,7 @@
 import { setMeshColor } from "../../utils.js";
 import { moveChecker } from "./triangleClickHandler.js";
+import Ui from "../../Ui.js";
+import Net from "../../Net.js";
 
 function handlecheckerClick(
   checker,
@@ -11,8 +13,11 @@ function handlecheckerClick(
   selectedChecker,
   isClickingAllowed,
   setIsClickingAllowed,
-  isFinishingPhase,
-  checkAndHandleWin
+  getIsFinishingPhase,
+  checkAndHandleWin,
+  movesLeft,
+  getMovesLeft,
+  setMovesLeft
 ) {
   // console.log(checker.getIsOnisOnBar());
   // if (selectedChecker) {
@@ -67,9 +72,12 @@ function handlecheckerClick(
       checker,
       numbersThrown,
       checkersData,
-      isFinishingPhase,
+      getIsFinishingPhase,
       setSelectedChecker,
-      checkAndHandleWin
+      checkAndHandleWin,
+      movesLeft,
+      getMovesLeft,
+      setMovesLeft
     );
   }
 
@@ -114,9 +122,12 @@ function findAvailableMoves(
   checker,
   numbersThrown,
   checkersData,
-  isFinishingPhase,
+  getIsFinishingPhase,
   setSelectedChecker,
-  checkAndHandleWin
+  checkAndHandleWin,
+  movesLeft,
+  getMovesLeft,
+  setMovesLeft
 ) {
   // console.log(checkersData);
 
@@ -135,7 +146,7 @@ function findAvailableMoves(
 
     // handling bearing off
 
-    if (isFinishingPhase) {
+    if (getIsFinishingPhase()) {
       // console.log(number);
       checkAndHandleBearingOff(
         checker,
@@ -143,7 +154,10 @@ function findAvailableMoves(
         number,
         availableMoves,
         setSelectedChecker,
-        checkAndHandleWin
+        checkAndHandleWin,
+        movesLeft,
+        getMovesLeft,
+        setMovesLeft
       );
     }
 
@@ -231,7 +245,10 @@ function checkAndHandleBearingOff(
   number,
   availableMoves,
   setSelectedChecker,
-  checkAndHandleWin
+  checkAndHandleWin,
+  movesLeft,
+  getMovesLeft,
+  setMovesLeft
 ) {
   const color1Map = { 6: 19, 5: 20, 4: 21, 3: 22, 2: 23, 1: 24 };
 
@@ -249,7 +266,7 @@ function checkAndHandleBearingOff(
   if (!checkersOnFieldSorted[0]) return;
 
   if (checker.getMyId() === checkersOnFieldSorted[0].id) {
-    availableMoves.push({ type: "bearingOff", index: indexToCheck });
+    availableMoves.push({ type: "bearing-off", index: indexToCheck });
     // console.log(availableMoves);
     moveChecker(checker, { x: 40, z: 0 });
 
@@ -257,14 +274,36 @@ function checkAndHandleBearingOff(
 
     setSelectedChecker(undefined);
 
-    let checkerToRemoveIndex;
+    let checkerToRemove;
     for (let i = 0; i < checkersData.length; i++) {
       if (checkersData[i].id === checker.getMyId()) {
         checkersData[i].position.index = null;
         checkersData[i].position.level = null;
         checkersData[i].outOfGame = true;
+
+        checkerToRemove = checkersData[i];
       }
     }
+
+    setMovesLeft(movesLeft - 1);
+    const updatedMovesLeft = getMovesLeft();
+
+    if (updatedMovesLeft <= 0) {
+      setMovesLeft(undefined);
+      Ui.showWaitingScreen();
+    }
+
+    Net.sendMove({
+      id: checkerToRemove.id,
+      isOutGame: true,
+      type: "bearing-off",
+      newPosition: {
+        isOnBar: false,
+        index: null,
+        level: null,
+      },
+      finalMove: !updatedMovesLeft,
+    });
 
     checkAndHandleWin();
 

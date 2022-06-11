@@ -1,4 +1,5 @@
 import Net from "../../Net.js";
+import Ui from "../../Ui.js";
 import { setMeshColor } from "../../utils.js";
 
 function handleTriangleClick(
@@ -15,10 +16,11 @@ function handleTriangleClick(
   setIsClickingAllowed,
   checkAndHandleFinishingPhase,
   movesLeft,
+  getMovesLeft,
   setMovesLeft
 ) {
   console.log(movesLeft);
-  if (movesLeft <= 0) return;
+  if (!movesLeft || movesLeft <= 0) return;
 
   if (!isClickingAllowed) return;
   setIsClickingAllowed(false);
@@ -80,16 +82,16 @@ function handleTriangleClick(
       selectedChecker.setIsOnBar(false);
     }
 
-    checkAndHandleFinishingPhase(
-      selectedChecker.getColorNumber(),
-      checkersData
-    );
+    checkAndHandleFinishingPhase(selectedChecker.getColorNumber());
 
-    console.log(move);
+    // console.log(move);
 
     setMovesLeft(movesLeft - 1);
-    if (movesLeft <= 0) {
+    const updatedMovesLeft = getMovesLeft();
+
+    if (updatedMovesLeft <= 0) {
       setMovesLeft(undefined);
+      Ui.showWaitingScreen();
     }
 
     Net.sendMove({
@@ -101,7 +103,7 @@ function handleTriangleClick(
         index: checkerData.position.index,
         level: checkerData.position.level,
       },
-      finalMove: !!movesLeft,
+      finalMove: !updatedMovesLeft,
     });
   }
 
@@ -120,9 +122,9 @@ function getYOffsetMove(
       checkerData.position.index === fieldIndex && !checkerData.position.isOnBar
   );
 
-  console.log(checkerWidth);
-  console.log(checkerMargin);
-  console.log(checkersOnField);
+  // console.log(checkerWidth);
+  // console.log(checkerMargin);
+  // console.log(checkersOnField);
 
   if (fieldLevel === 1) {
     // Color;
