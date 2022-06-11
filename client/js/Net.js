@@ -74,9 +74,10 @@ export default class Net {
       .then((data) => console.log(data));
   }
 
-  static saveUserStat(userColor) {
+  static saveUserStat(data) {
     let body = {
-      userColor: userColor,
+      userColor: data.userColor,
+      result: data.result,
     };
 
     let options = {

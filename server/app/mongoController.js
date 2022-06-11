@@ -53,12 +53,13 @@ module.exports = {
 
   addUserStat: async (req, res) => {
     console.log(req.body);
-
     let userName = users.find((elem) => elem.color == req.body.userColor);
     userName = userName.nick;
+
     const doesUserExit = await UserStats.exists({ userName: userName });
+    console.log("doesUserExit: ", doesUserExit);
+
     if (doesUserExit == null) {
-      console.log("doesUserExit: ", doesUserExit);
       const userStat = await UserStats.create({
         userName: userName,
         wins: 0,
@@ -68,8 +69,9 @@ module.exports = {
       });
       console.log(userStat);
       res.status(200).json({ msg: "dodane" });
-    } else {
-      await UserStats.findOneAndUpdate(
+    }
+    if (req.body.result == "win") {
+      UserStats.findOneAndUpdate(
         { userName: userName },
         { $inc: { wins: 1 } },
         { new: true },
@@ -77,9 +79,18 @@ module.exports = {
           console.log(err);
         }
       );
-
-      res.status(200).json({ msg: "wins and loses are updated" });
+    } else if (req.body.result == "lose") {
+      UserStats.findOneAndUpdate(
+        { userName: userName },
+        { $inc: { loses: 1 } },
+        { new: true },
+        function (err, response) {
+          console.log(err);
+        }
+      );
     }
+
+    res.status(200).json({ msg: "wins and loses are updated" });
   },
 
   getGamesHistory: async (req, res) => {
