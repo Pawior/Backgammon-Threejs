@@ -15,8 +15,8 @@ module.exports = (io, socket) => {
     } else state = "opponents-turn";
     console.log("pionek leci");
     console.log(pieceMoveInfo);
-    // socket.broadcast.emit("receive-communication", state, pieceMoveInfo);
-    io.emit("receive-communication", state, pieceMoveInfo);
+    socket.broadcast.emit("receive-communication", state, pieceMoveInfo);
+    // io.emit("receive-communication", state, pieceMoveInfo);
   };
   socket.on("request-communication", (pieceMoveInfo) => {
     handleSendPiece(pieceMoveInfo);

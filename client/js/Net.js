@@ -1,4 +1,6 @@
 import handleStateChange from "./net/handleStateChange.js";
+import handleOpponentsMove from "./net/handleOpponentsMove.js";
+const socket = io("http://localhost:3000/", { transports: ["websocket"] }); // TODO
 
 export default class Net {
   constructor() {
@@ -18,22 +20,36 @@ export default class Net {
     return info;
   }
 
-  static monitorState(handleOpponentMove) {
+  static monitorState(
+    setGameState,
+    checkerData,
+    checkerModels,
+    checkerWidth,
+    checkerMargin,
+    fieldsPositions
+  ) {
     console.log("tekst");
 
-    const socket = io("http://localhost:3000/", { transports: ["websocket"] });
+    // const socket = io("http://localhost:3000/", { transports: ["websocket"] });
     socket.on("receive-communication", (state, move) => {
       console.log(state);
       console.log(move);
-      handleStateChange(state);
+      handleStateChange(state, setGameState);
       if (move) {
-        handleOpponentMove(move);
+        handleOpponentsMove(
+          move,
+          checkerData,
+          checkerModels,
+          checkerWidth,
+          checkerMargin,
+          fieldsPositions
+        );
       }
     });
   }
 
   static sendMove(move) {
-    const socket = io("http://localhost:3000/", { transports: ["websocket"] });
+    // const socket = io("http://localhost:3000/", { transports: ["websocket"] });
     socket.emit("request-communication", move);
   }
 }

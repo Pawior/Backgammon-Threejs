@@ -28,12 +28,14 @@ function handleTriangleClick(
 
   for (const move of availableMoves) {
     const fieldIndex = field.getIndex();
+    const fieldLevel = field.getLevel();
 
     if (fieldIndex !== move.index) continue;
     setAvailableMoves([]);
 
     const fieldPosition = field.getMyPosition();
     let yOffset;
+
     if (move.type === "move") {
       yOffset = getYOffsetMove(
         field.getLevel(),
@@ -43,7 +45,7 @@ function handleTriangleClick(
         checkerMargin
       );
     } else if (move.type === "capture") {
-      yOffset = getYOffsetCapture(field.getLevel(), checkerWidth);
+      yOffset = getYOffsetCapture(fieldLevel, checkerWidth);
 
       captureChecker(
         fieldIndex,
@@ -61,7 +63,7 @@ function handleTriangleClick(
     // saving new checker data
 
     const newCheckerLevel = getNewCheckerLevel(checkersData, fieldIndex);
-    changeCheckerPosition(
+    const checkerData = changeCheckerPosition(
       selectedChecker.getMyId(),
       fieldIndex,
       newCheckerLevel
@@ -79,13 +81,16 @@ function handleTriangleClick(
       checkersData
     );
 
+    console.log(move);
+
     Net.sendMove({
-      id: selectedChecker.getMyId(),
-      isOutGame: false, // TODO
+      id: checkerData.id,
+      isOutGame: checkerData.isOutGame, // TODO
+      type: move.type,
       newPosition: {
-        isOnBar: selectedChecker.getIsOnBar(),
-        index: selectedChecker.getIndex(),
-        level: selectedChecker.getLevel(),
+        isOnBar: checkerData.position.isOnBar,
+        index: checkerData.position.index,
+        level: checkerData.position.level,
       },
       finalMove: false, // TODO
     });

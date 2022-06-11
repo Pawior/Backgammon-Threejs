@@ -1,7 +1,15 @@
 import Net from "./Net.js";
 
 export default class Ui {
-  static handleLoginScreen(setPlayersColor, setGameState) {
+  static handleLoginScreen(
+    setPlayersColor,
+    setGameState,
+    checkerData,
+    checkerModels,
+    checkerWidth,
+    checkerMargin,
+    fieldsPositions
+  ) {
     const loginButton = document.querySelector("#login-button");
     loginButton.addEventListener("click", async (e) => {
       e.preventDefault();
@@ -22,7 +30,14 @@ export default class Ui {
 
       // setGameState(startInfo.state);
 
-      Net.monitorState(setGameState);
+      Net.monitorState(
+        setGameState,
+        checkerData,
+        checkerModels,
+        checkerWidth,
+        checkerMargin,
+        fieldsPositions
+      );
     });
   }
 
