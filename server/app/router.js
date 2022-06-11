@@ -39,6 +39,9 @@ router.get("/getFullLeaderboard", mongoController.getFullLeaderboard);
 router.get("/getAllStat", mongoController.getAllStat);
 router.get("/getGamesHistory", mongoController.getGamesHistory);
 router.get("/", controller.getHomePage);
+router.get("/getSpecificUserStat", mongoController.getSpecificUserStat);
+router.get("/userStat", controller.userStatPage);
+router.post("/postSpecificUserStat", mongoController.postSpecificUserStat);
 
 router.post("/endGame", async (req, res) => {
   await mongoController.addGameToHistory(req, res);

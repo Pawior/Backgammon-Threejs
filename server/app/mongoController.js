@@ -3,6 +3,7 @@ const Leaderboard = require("./mongoModels/leaderboard");
 const UserStats = require("./mongoModels/userStats");
 const GamesHistory = require("./mongoModels/gamesHistory");
 let { users, games } = require("./model");
+let path = require("path");
 
 module.exports = {
   getFullLeaderboard: async (req, res) => {
@@ -89,10 +90,35 @@ module.exports = {
         }
       );
     }
-
-    res.status(200).json({ msg: "wins and loses are updated" });
   },
-
+  getSpecificUserStat: async (req, res) => {
+    let user = req.query.user;
+    console.log(user);
+    const userStats = await UserStats.findOne({ userName: user }).exec();
+    console.log(userStats);
+    console.log(userStats.loses);
+    // res.sendFile(path.join(__dirname, "..", "..", "client", "stats.html"));
+    res.send({
+      userName: userStats.userName,
+      wins: userStats.wins,
+      loses: userStats.loses,
+    });
+  },
+  postSpecificUserStat: async (req, res) => {
+    console.log(req.body);
+    let userName = users.find((elem) => elem.color == req.body.userColor);
+    userName = userName.nick;
+    console.log(userName);
+    const userStats = await UserStats.findOne({ userName: userName }).exec();
+    console.log(userStats);
+    console.log(userStats.loses);
+    // res.sendFile(path.join(__dirname, "..", "..", "client", "stats.html"));
+    res.send({
+      userName: userStats.userName,
+      wins: userStats.wins,
+      loses: userStats.loses,
+    });
+  },
   getGamesHistory: async (req, res) => {
     try {
       const gottenGames = await GamesHistory.find();

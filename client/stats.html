@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        color: rgb(255, 255, 255);
+        /* font-weight: 400; */
+      }
+      body {
+        background-color: #4b7979;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>User Stats</h2>
+    <div id="userStats-container">
+      <p id="userStats-p-userName">User name:</p>
+      <p id="userStats-p-wins">Wins:</p>
+      <p id="userStats-p-loses">Loses:</p>
+    </div>
+    <script defer>
+      let body = {
+        userColor: 1,
+      };
+      let options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      };
+      let userStatsContainer = document.querySelector("#userStats-container");
+      let userStatsPuserName = document.querySelector("#userStats-p-userName");
+      let userStatsPwins = document.querySelector("#userStats-p-wins");
+      let userStatsPloses = document.querySelector("#userStats-p-loses");
+      fetch("http://localhost:3000/postSpecificUserStat", options)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          userStatsPuserName.innerHTML += ` ${data.userName}`;
+          userStatsPwins.innerHTML += ` ${data.wins}`;
+          userStatsPloses.innerHTML += ` ${data.loses}`;
+        });
+    </script>
+  </body>
+</html>
