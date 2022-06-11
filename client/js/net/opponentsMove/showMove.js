@@ -2,6 +2,7 @@ import {
   getYOffsetMove,
   getYOffsetCapture,
   captureChecker,
+  moveChecker,
 } from "../../game/clickHandlers/triangleClickHandler.js";
 
 export default function showMove(
@@ -12,9 +13,13 @@ export default function showMove(
   checkerMargin,
   fieldsPositions
 ) {
+  console.log(move.type);
+
   let checkerToMove = checkerModels.filter(
     (checker) => checker.getMyId() === move.id
   )[0];
+  console.log(checkerToMove);
+
   let yOffset;
 
   const fieldLevel = move.newPosition.index > 12 ? 2 : 1;
@@ -36,11 +41,11 @@ export default function showMove(
       checkerWidth,
       checkerMargin
     );
-
-    const fieldPosition = fieldsPositions[move.newPosition.index - 1];
-
-    const moveTo = { x: fieldPosition.x, z: fieldPosition.z + yOffset };
-
-    moveChecker(checkerToMove, moveTo);
   }
+  const fieldPosition = fieldsPositions[move.newPosition.index - 1];
+  console.log(fieldPosition);
+
+  const moveTo = { x: fieldPosition.x, z: fieldPosition.z + yOffset };
+
+  moveChecker(checkerToMove, moveTo);
 }

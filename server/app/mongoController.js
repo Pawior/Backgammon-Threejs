@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Leaderboard = require("./mongoModels/leaderboard");
 const UserStats = require("./mongoModels/userStats");
 const GamesHistory = require("./mongoModels/gamesHistory");
+let { users, games } = require("./model");
 
 module.exports = {
   getFullLeaderboard: async (req, res) => {
@@ -83,13 +84,20 @@ module.exports = {
   },
   addGameToHistory: async (req, res) => {
     console.log(req.body);
-    console.log(req.body.users);
-    console.log(req.body.users.firstUserName);
+    // console.log(req.body.users);
+    // console.log(req.body.users.firstUserName);
+    let winnerUserName = users.find(
+      (elem) => elem.color == req.body.winnerColor
+    );
+    winnerUserName = winnerUserName.nick;
+    let loserUserName = users.find((elem) => elem.color == req.body.loserColor);
+    loserUserName = loserUserName.nick;
+
     const gamesHistory = await GamesHistory.create({
-      firstUserName: req.body.users.firstUserName,
-      secondUserName: req.body.users.secondUserName,
-      winner: req.body.winner,
-      loser: req.body.loser,
+      firstUserName: winnerUserName,
+      secondUserName: loserUserName,
+      winner: winnerUserName,
+      loser: loserUserName,
       checkersData: [],
       endTime: new Date(),
       endTimeString: new Date().toISOString(),

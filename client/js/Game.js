@@ -21,17 +21,6 @@ class Game {
     this.isClickingAllowed = true;
     this.isFinishingPhase = false;
 
-    // Ui
-    Ui.handleLoginScreen(
-      this.setPlayersColor,
-      this.setGameState,
-      this.checkers,
-      this.checkerModels,
-      this.checkerWidth,
-      this.checkerMargin,
-      this.fieldsPositions
-    );
-
     // Models
     let models = new Models();
     models.initalizeScene();
@@ -45,6 +34,17 @@ class Game {
     this.checkerWidth = models.getCheckerWidth();
     this.checkerMargin = models.getCheckerMargin();
 
+    // Ui
+    Ui.handleLoginScreen(
+      this.setPlayersColor,
+      this.setGameState,
+      this.checkers,
+      this.checkerModels,
+      this.checkerWidth,
+      this.checkerMargin,
+      this.fieldsPositions
+    );
+
     this.addClickListener(models);
     addDiceListener(
       this.clearNumbersThrown,
@@ -54,6 +54,7 @@ class Game {
 
     this.playersColor = 1;
     this.numbersThrown = [];
+    this.movesLeft;
   }
 
   addClickListener = (models) => {
@@ -132,6 +133,7 @@ class Game {
     if (checkersLeft.length > 0) return;
 
     // won
+    // Net.saveGameInfo(this.playersColor, this.playersColor) // TODO
     console.log("you won");
   };
 
@@ -201,6 +203,8 @@ class Game {
   addFieldPosition = (fieldPosition) => {
     this.fieldsPositions.push(fieldPosition);
   };
+
+  set;
 }
 
 export default Game;

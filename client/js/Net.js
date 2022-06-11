@@ -33,9 +33,11 @@ export default class Net {
     // const socket = io("http://localhost:3000/", { transports: ["websocket"] });
     socket.on("receive-communication", (state, move) => {
       console.log(state);
-      console.log(move);
       handleStateChange(state, setGameState);
+
       if (move) {
+        console.log(move);
+
         handleOpponentsMove(
           move,
           checkerData,
@@ -51,5 +53,24 @@ export default class Net {
   static sendMove(move) {
     // const socket = io("http://localhost:3000/", { transports: ["websocket"] });
     socket.emit("request-communication", move);
+  }
+
+  static saveGameInfo(winner, loser) {
+    let body = {
+      winnerColor: winner,
+      loserColor: loser,
+    };
+
+    let options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    };
+
+    fetch(`http://localhost:3000/endGame`, options)
+      .then((response) => response.json())
+      .then((data) => console.log(data));
   }
 }

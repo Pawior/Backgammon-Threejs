@@ -111,6 +111,10 @@ function getYOffsetMove(
       checkerData.position.index === fieldIndex && !checkerData.position.isOnBar
   );
 
+  console.log(checkerWidth);
+  console.log(checkerMargin);
+  console.log(checkersOnField);
+
   if (fieldLevel === 1) {
     // Color;
     return (

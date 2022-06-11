@@ -9,7 +9,6 @@ export default function handleOpponetsMove(
   checkerMargin,
   fieldsPositions
 ) {
-  updateData(opponentsMove, checkersData, checkerModels);
   showMove(
     opponentsMove,
     checkersData,
@@ -18,4 +17,5 @@ export default function handleOpponetsMove(
     checkerMargin,
     fieldsPositions
   );
+  updateData(opponentsMove, checkersData, checkerModels);
 }
