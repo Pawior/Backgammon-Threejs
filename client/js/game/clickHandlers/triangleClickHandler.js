@@ -17,6 +17,7 @@ function handleTriangleClick(
   movesLeft,
   setMovesLeft
 ) {
+  console.log(movesLeft);
   if (movesLeft <= 0) return;
 
   if (!isClickingAllowed) return;
@@ -72,8 +73,6 @@ function handleTriangleClick(
       newCheckerLevel
     );
 
-    setMovesLeft(movesLeft - 1);
-
     selectedChecker.setIndex(fieldIndex);
     selectedChecker.setLevel(newCheckerLevel);
 
@@ -88,6 +87,11 @@ function handleTriangleClick(
 
     console.log(move);
 
+    setMovesLeft(movesLeft - 1);
+    if (movesLeft <= 0) {
+      setMovesLeft(undefined);
+    }
+
     Net.sendMove({
       id: checkerData.id,
       isOutGame: checkerData.isOutGame, // TODO
@@ -97,7 +101,7 @@ function handleTriangleClick(
         index: checkerData.position.index,
         level: checkerData.position.level,
       },
-      finalMove: false, // TODO
+      finalMove: !!movesLeft,
     });
   }
 

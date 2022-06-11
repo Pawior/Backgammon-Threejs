@@ -46,11 +46,12 @@ class Game {
     );
 
     this.addClickListener(models);
+
     addDiceListener(
       this.clearNumbersThrown,
       this.addNumberThrown,
       this.getNumbersThrown,
-      this.movesLeft,
+      this.getMovesLeft,
       this.setMovesLeft
     );
 
@@ -86,7 +87,9 @@ class Game {
             this.setAvailableMoves,
             this.isClickingAllowed,
             this.setIsClickingAllowed,
-            this.checkAndHandleFinishingPhase
+            this.checkAndHandleFinishingPhase,
+            this.movesLeft,
+            this.setMovesLeft
           );
         } else if (object.name === "checker") {
           handlecheckerClick(
@@ -206,9 +209,13 @@ class Game {
     this.fieldsPositions.push(fieldPosition);
   };
 
-  setMovesLeft(number) {
+  setMovesLeft = (number) => {
     this.movesLeft = number;
-  }
+  };
+
+  getMovesLeft = () => {
+    return this.movesLeft;
+  };
 }
 
 export default Game;
