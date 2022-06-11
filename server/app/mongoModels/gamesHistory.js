@@ -2,10 +2,7 @@ const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
 const gamesHistorySchema = new Schema({
-  users: {
-    firstUserName: String,
-    secondUserName: String,
-  },
+  users: [String],
   winner: String,
   loser: String,
   checkersData: Schema.Types.Mixed,

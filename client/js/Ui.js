@@ -24,6 +24,7 @@ export default class Ui {
 
       this.showWaitingScreen();
       Net.saveGameInfo(1, 2);
+      Net.saveUserStat(1);
 
       if (startInfo.color === 2) {
         this.hideWaitingScreen();

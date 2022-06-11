@@ -73,4 +73,22 @@ export default class Net {
       .then((response) => response.json())
       .then((data) => console.log(data));
   }
+
+  static saveUserStat(userColor) {
+    let body = {
+      userColor: userColor,
+    };
+
+    let options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    };
+
+    fetch(`http://localhost:3000/mongoaddUserStat`, options)
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  }
 }

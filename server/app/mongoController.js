@@ -52,19 +52,34 @@ module.exports = {
   },
 
   addUserStat: async (req, res) => {
-    // let parsedData = JSON.parse(req.body);
+    console.log(req.body);
 
-    // console.log(req.body);
-    // console.log("Add score ");
-    const userStat = await UserStats.create({
-      userName: req.body.userName,
-      wins: req.body.wins,
-      loses: req.body.loses,
-      timeStamp: new Date(),
-      timeStampString: new Date().toISOString(),
-    });
-    console.log(userStat);
-    res.status(200).json({ msg: "dodane" });
+    let userName = users.find((elem) => elem.color == req.body.userColor);
+    userName = userName.nick;
+    const doesUserExit = await UserStats.exists({ userName: userName });
+    if (doesUserExit == null) {
+      console.log("doesUserExit: ", doesUserExit);
+      const userStat = await UserStats.create({
+        userName: userName,
+        wins: 0,
+        loses: 0,
+        timeStamp: new Date(),
+        timeStampString: new Date().toISOString(),
+      });
+      console.log(userStat);
+      res.status(200).json({ msg: "dodane" });
+    } else {
+      await UserStats.findOneAndUpdate(
+        { userName: userName },
+        { $inc: { wins: 1 } },
+        { new: true },
+        function (err, response) {
+          console.log(err);
+        }
+      );
+
+      res.status(200).json({ msg: "wins and loses are updated" });
+    }
   },
 
   getGamesHistory: async (req, res) => {
@@ -91,11 +106,15 @@ module.exports = {
     );
     winnerUserName = winnerUserName.nick;
     let loserUserName = users.find((elem) => elem.color == req.body.loserColor);
-    loserUserName = loserUserName.nick;
+    console.log("loserUserName ", loserUserName);
+    if (loserUserName == undefined) {
+      loserUserName = "no user";
+    } else {
+      loserUserName = loserUserName.nick;
+    }
 
     const gamesHistory = await GamesHistory.create({
-      firstUserName: winnerUserName,
-      secondUserName: loserUserName,
+      users: [winnerUserName, loserUserName],
       winner: winnerUserName,
       loser: loserUserName,
       checkersData: [],
