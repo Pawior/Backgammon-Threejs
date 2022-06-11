@@ -32,9 +32,7 @@ module.exports = {
     const nick = req.body.nick;
     const color = users.length + 1;
     users.push({ nick: nick, color: color });
-
     console.log(users);
-
     res.json({ color: color });
   },
   handleState: (req, res) => {

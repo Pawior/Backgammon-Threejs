@@ -21,7 +21,7 @@ socket.on("receive-active-pieces", (pieces) => {
 function getActivePiecesArr() {
   socket.emit("request-active-pieces");
 }
-
+//git pull --ff-only
 /**----------------------
  *    Nasłuchiwanie na nowy ruch pionka
  *------------------------**/
