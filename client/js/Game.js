@@ -42,15 +42,17 @@ class Game {
       this.checkerModels,
       this.checkerWidth,
       this.checkerMargin,
-      this.fieldsPositions
+      this.fieldsPositions,
+      this.checkAndHandleWin
     );
 
     this.addClickListener(models);
+
     addDiceListener(
       this.clearNumbersThrown,
       this.addNumberThrown,
       this.getNumbersThrown,
-      this.movesLeft,
+      this.getMovesLeft,
       this.setMovesLeft
     );
 
@@ -86,7 +88,10 @@ class Game {
             this.setAvailableMoves,
             this.isClickingAllowed,
             this.setIsClickingAllowed,
-            this.checkAndHandleFinishingPhase
+            this.checkAndHandleFinishingPhase,
+            this.movesLeft,
+            this.getMovesLeft,
+            this.setMovesLeft
           );
         } else if (object.name === "checker") {
           handlecheckerClick(
@@ -99,20 +104,23 @@ class Game {
             this.selectedChecker,
             this.isClickingAllowed,
             this.setIsClickingAllowed,
-            this.isFinishingPhase,
-            this.checkAndHandleWin
+            this.getIsFinishingPhase,
+            this.checkAndHandleWin,
+            this.movesLeft,
+            this.getMovesLeft,
+            this.setMovesLeft
           );
         }
       }
     });
   };
 
-  checkAndHandleFinishingPhase = (color, checkersData) => {
+  checkAndHandleFinishingPhase = (color) => {
     const indexToCheckForColor = [
       { start: 1, end: 18 },
       { start: 7, end: 24 },
     ];
-    const checkersNotInHome = checkersData.filter(
+    const checkersNotInHome = this.checkers.filter(
       (checker) =>
         ((checker.position.index <= indexToCheckForColor[color - 1].end &&
           checker.position.index >= indexToCheckForColor[color - 1].start) ||
@@ -120,7 +128,7 @@ class Game {
         checker.color === color
     );
 
-    // console.log(checkersNotInHome.length);
+    console.log(checkersNotInHome.length);
 
     if (checkersNotInHome.length === 0) {
       this.isFinishingPhase = true;
@@ -128,15 +136,21 @@ class Game {
   };
 
   checkAndHandleWin = () => {
-    const checkersLeft = this.checkers.filter(
+    const myCheckersLeft = this.checkers.filter(
       (checker) => checker.color === this.playersColor && !checker.outOfGame
     );
 
-    if (checkersLeft.length > 0) return;
+    const opponentsCheckersLeft = this.checkers.filter((checker) =>
+      (checker.color === this.playersColor) === 1 ? 2 : 1 && !checker.outOfGame
+    );
 
-    // won
+    if (myCheckersLeft.length <= 0) {
+      console.log("you won");
+    } else if (opponentsCheckersLeft.length <= 0) {
+      console.log("the oppoent won");
+    }
+
     // Net.saveGameInfo(this.playersColor, this.playersColor) // TODO
-    console.log("you won");
   };
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -206,9 +220,17 @@ class Game {
     this.fieldsPositions.push(fieldPosition);
   };
 
-  setMovesLeft(number) {
+  setMovesLeft = (number) => {
     this.movesLeft = number;
-  }
+  };
+
+  getMovesLeft = () => {
+    return this.movesLeft;
+  };
+
+  getIsFinishingPhase = () => {
+    return this.isFinishingPhase;
+  };
 }
 
 export default Game;

@@ -7,7 +7,8 @@ export default function handleOpponetsMove(
   checkerModels,
   checkerWidth,
   checkerMargin,
-  fieldsPositions
+  fieldsPositions,
+  checkAndHandleWin
 ) {
   showMove(
     opponentsMove,
@@ -18,4 +19,5 @@ export default function handleOpponetsMove(
     fieldsPositions
   );
   updateData(opponentsMove, checkersData, checkerModels);
+  checkAndHandleWin();
 }

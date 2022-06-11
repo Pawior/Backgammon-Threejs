@@ -2,12 +2,14 @@ export default function addDiceListener(
   clearNumbersThrown,
   addNumberThrown,
   getNumbersThrown,
-  movesLeft,
+  getMovesLeft,
   setMovesLeft
 ) {
   const dice = document.querySelector("#dice");
 
   dice.addEventListener("click", function () {
+    const movesLeft = getMovesLeft();
+
     if (typeof movesLeft !== "undefined") return;
 
     clearNumbersThrown();
@@ -16,11 +18,7 @@ export default function addDiceListener(
     addNumberThrown(number1);
     addNumberThrown(number2);
 
-    if (number1 !== number2) {
-      setMovesLeft(4);
-    } else {
-      setMovesLeft(2);
-    }
+    setMovesLeft(number1 !== number2 ? 2 : 4);
 
     const lastNumberThrown = number2;
 

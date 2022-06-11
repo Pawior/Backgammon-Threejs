@@ -9,7 +9,7 @@ module.exports = (io, socket) => {
 
   const handleSendPiece = (pieceMoveInfo) => {
     let state = "opponents-turn";
-    console.log(pieceMoveInfo);
+    console.log("pieceMoveInfo", pieceMoveInfo);
 
     if (pieceMoveInfo.finalMove == true) {
       state = "your-turn";
