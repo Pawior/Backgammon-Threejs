@@ -52,4 +52,12 @@ content-type: application/json
 ###
 
 GET http://localhost:3000/getGamesHistory HTTP/1.1
+###
+
+GET http://localhost:3000/getAllStat HTTP/1.1
+
+
+###
+GET http://localhost:3000/getSpecificUserStat/?user=Adam HTTP/1.1
+
 
