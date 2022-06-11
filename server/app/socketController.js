@@ -7,16 +7,28 @@ module.exports = (io, socket) => {
   };
   socket.on("request-active-pieces", handleSendPiecesArr);
 
-  const handleSendPiece = (pieceInfo) => {
+  const handleSendPiece = (pieceMoveInfo) => {
+    let state = "opponents-turn";
+    console.log(pieceMoveInfo);
+    if (pieceMoveInfo.finalMove) {
+      state = "your-turn";
+    } else state = "opponents-turn";
     console.log("pionek leci");
-    console.log(pieceInfo);
-    socket.broadcast.emit("receive-moved-piece", pieceInfo);
+    console.log(pieceMoveInfo);
+    // socket.broadcast.emit("receive-communication", state, pieceMoveInfo);
+    io.emit("receive-communication", state, pieceMoveInfo);
   };
-  socket.on("request-moved-piece", (pieceInfo) => {
-    handleSendPiece(pieceInfo);
+  socket.on("request-communication", (pieceMoveInfo) => {
+    handleSendPiece(pieceMoveInfo);
   });
 };
 
 // module.exports = (io, socker) => {};
 
 // Pionek, index, newPosition
+/*
+opponents-turn
+your-turn
+
+
+*/

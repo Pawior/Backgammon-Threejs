@@ -13,7 +13,13 @@ export default class Ui {
       const nick = nickInput.value;
       const startInfo = await Net.logIn(nick);
       setPlayersColor(startInfo.color);
+
       this.showWaitingScreen();
+
+      if (startInfo.color === 2) {
+        this.hideWaitingScreen();
+      }
+
       // setGameState(startInfo.state);
 
       Net.monitorState(setGameState);
@@ -23,5 +29,10 @@ export default class Ui {
   static showWaitingScreen() {
     let waitingScreen = document.querySelector("#waiting-screen");
     waitingScreen.style.display = "initial";
+  }
+
+  static hideWaitingScreen() {
+    let waitingScreen = document.querySelector("#waiting-screen");
+    waitingScreen.style.display = "none";
   }
 }

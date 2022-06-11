@@ -1,3 +1,4 @@
+import Net from "../../Net.js";
 import { setMeshColor } from "../../utils.js";
 
 function handleTriangleClick(
@@ -77,6 +78,17 @@ function handleTriangleClick(
       selectedChecker.getColorNumber(),
       checkersData
     );
+
+    Net.sendMove({
+      id: selectedChecker.getMyId(),
+      isOutGame: false, // TODO
+      newPosition: {
+        isOnBar: selectedChecker.getIsOnBar(),
+        index: selectedChecker.getIndex(),
+        level: selectedChecker.getLevel(),
+      },
+      finalMove: false, // TODO
+    });
   }
 
   setIsClickingAllowed(true);
