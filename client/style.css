@@ -56,3 +56,16 @@ body {
 #dice img {
   width: 100%;
 }
+
+#end-of-turn-button {
+  position: fixed;
+  top: 1vw;
+  right: 50vw;
+  transform: translateX(50%);
+
+  border: 2px solid black;
+  border-radius: 10px;
+  background: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}

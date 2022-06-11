@@ -8,7 +8,8 @@ export default class Ui {
     checkerModels,
     checkerWidth,
     checkerMargin,
-    fieldsPositions
+    fieldsPositions,
+    checkAndHandleWin
   ) {
     const loginButton = document.querySelector("#login-button");
     loginButton.addEventListener("click", async (e) => {
@@ -23,8 +24,6 @@ export default class Ui {
       setPlayersColor(startInfo.color);
 
       this.showWaitingScreen();
-      Net.saveGameInfo(1, 2);
-      Net.saveUserStat(1);
 
       if (startInfo.color === 2) {
         this.hideWaitingScreen();
@@ -38,7 +37,8 @@ export default class Ui {
         checkerModels,
         checkerWidth,
         checkerMargin,
-        fieldsPositions
+        fieldsPositions,
+        checkAndHandleWin
       );
     });
   }

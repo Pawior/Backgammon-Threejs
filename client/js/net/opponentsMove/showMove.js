@@ -13,12 +13,12 @@ export default function showMove(
   checkerMargin,
   fieldsPositions
 ) {
-  console.log(move.type);
+  // console.log(move.type);
 
   let checkerToMove = checkerModels.filter(
     (checker) => checker.getMyId() === move.id
   )[0];
-  console.log(checkerToMove);
+  // console.log(checkerToMove);
 
   let yOffset;
 
@@ -42,10 +42,16 @@ export default function showMove(
       checkerMargin
     );
   }
-  const fieldPosition = fieldsPositions[move.newPosition.index - 1];
-  console.log(fieldPosition);
 
-  const moveTo = { x: fieldPosition.x, z: fieldPosition.z + yOffset };
+  let moveTo;
+
+  if (move.type === "bearing-off") {
+    moveTo = { x: 25, z: 0 };
+  } else {
+    const fieldPosition = fieldsPositions[move.newPosition.index - 1];
+    moveTo = { x: fieldPosition.x, z: fieldPosition.z + yOffset };
+  }
+  // console.log(fieldPosition);
 
   moveChecker(checkerToMove, moveTo);
 }

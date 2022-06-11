@@ -26,10 +26,9 @@ export default class Net {
     checkerModels,
     checkerWidth,
     checkerMargin,
-    fieldsPositions
+    fieldsPositions,
+    checkAndHandleWin
   ) {
-    console.log("tekst");
-
     // const socket = io("http://localhost:3000/", { transports: ["websocket"] });
     socket.on("receive-communication", (state, move) => {
       console.log(state);
@@ -44,7 +43,8 @@ export default class Net {
           checkerModels,
           checkerWidth,
           checkerMargin,
-          fieldsPositions
+          fieldsPositions,
+          checkAndHandleWin
         );
       }
     });
