@@ -14,14 +14,47 @@
       body {
         background-color: #4b7979;
       }
+      h1 {
+        font-size: 2.5rem;
+      }
+      p {
+        font-size: 1.8rem;
+      }
+      #container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      #userStats-container {
+        border: 2px solid #993117;
+        padding: 1rem;
+      }
+      .writtenInfo {
+        color: #e9d5ca;
+      }
     </style>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
   </head>
   <body>
-    <h2>User Stats</h2>
-    <div id="userStats-container">
-      <p id="userStats-p-userName">User name:</p>
-      <p id="userStats-p-wins">Wins:</p>
-      <p id="userStats-p-loses">Loses:</p>
+    <div id="container">
+      <h1>User Stats <ion-icon name="stats-chart-outline"></ion-icon></h1>
+      <div id="userStats-container">
+        <p id="userStats-p-userName">
+          <ion-icon name="person-outline"></ion-icon> User Name:
+        </p>
+        <p id="userStats-p-wins">
+          <ion-icon name="trophy-outline"></ion-icon> Wins:
+        </p>
+        <p id="userStats-p-loses">
+          <ion-icon name="trophy-outline"></ion-icon> Loses:
+        </p>
+      </div>
     </div>
     <script defer>
       let body = {
@@ -42,9 +75,9 @@
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-          userStatsPuserName.innerHTML += ` ${data.userName}`;
-          userStatsPwins.innerHTML += ` ${data.wins}`;
-          userStatsPloses.innerHTML += ` ${data.loses}`;
+          userStatsPuserName.innerHTML += `<span class="writtenInfo"> ${data.userName} </span>`;
+          userStatsPwins.innerHTML += ` <span class="writtenInfo"> ${data.wins} </span>`;
+          userStatsPloses.innerHTML += `<span class="writtenInfo"> ${data.loses} </span>`;
         });
     </script>
   </body>
