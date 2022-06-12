@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        color: rgb(255, 255, 255);
+        /* font-weight: 400; */
+      }
+      body {
+        background-color: #4b7979;
+      }
+      h1 {
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+      }
+      p {
+        font-size: 1rem;
+      }
+      #container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      #games-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-content: center;
+        flex-direction: row;
+      }
+      #game-container {
+        border: 2px solid #993117;
+        padding: 1rem;
+        margin: 0.5rem;
+      }
+      #game-icon {
+        font-size: 4rem;
+        --ionicon-stroke-width: 16px;
+      }
+      .writtenInfo {
+        color: #e9d5ca;
+      }
+    </style>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+  </head>
+
+  <body>
+    <div id="container">
+      <h1>
+        <ion-icon id="game-icon" name="game-controller-outline"> </ion-icon>
+        Games History
+      </h1>
+      <div id="games-container"></div>
+    </div>
+
+    <script defer>
+      const getGamesHistory = async () => {
+        const gamesHistory = await fetch(
+          "http://localhost:3000/getGamesHistory"
+        );
+
+        const info = await gamesHistory.json();
+        console.log(info);
+        const gamesContainer = document.querySelector("#games-container");
+
+        info.forEach((game) => {
+          var gameTime = new Date(game.endTime);
+
+          let div = document.createElement("div");
+          div.id = "game-container";
+          let p = document.createElement("p");
+          let p2 = document.createElement("p");
+          let p3 = document.createElement("p");
+          let p4 = document.createElement("p");
+          let p5 = document.createElement("p");
+          //   `<span class="writtenInfo"> ${data.userName} </span>`;
+          p.innerHTML = `Users: <span class="writtenInfo"> ${game.users} </span>`;
+          p2.innerHTML = `Winner: <span class="writtenInfo"> ${game.winner} </span>`;
+          p3.innerHTML = `Loser: <span class="writtenInfo"> ${game.loser} </span>`;
+          p4.innerHTML = `Game Time: <span class="writtenInfo"> ${gameTime.toDateString()} </span>`;
+          p5.innerHTML = `Game ID: <span class="writtenInfo"> ${game._id} </span>`;
+          div.appendChild(p5);
+          div.appendChild(p);
+          div.appendChild(p2);
+          div.appendChild(p3);
+          div.appendChild(p4);
+          gamesContainer.appendChild(div);
+        });
+      };
+      getGamesHistory();
+    </script>
+  </body>
+</html>

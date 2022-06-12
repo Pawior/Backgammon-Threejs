@@ -51,6 +51,11 @@ module.exports = {
       res.error({ message: "cant find that status" });
     }
   },
+  gamesHistory: (req, res) => {
+    res.sendFile(
+      path.join(__dirname, "..", "..", "client", "gamesHistory.html")
+    );
+  },
   userStatPage: (req, res) => {
     res.sendFile(path.join(__dirname, "..", "..", "client", "stats.html"));
   },
