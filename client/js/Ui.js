@@ -52,4 +52,12 @@ export default class Ui {
     let waitingScreen = document.querySelector("#waiting-screen");
     waitingScreen.style.display = "none";
   }
+
+  static handleEndOfTurnButton() {
+    let button = document.querySelector("#end-of-turn-button");
+    button.addEventListener("click", () => {
+      this.showWaitingScreen();
+      Net.endTurn();
+    });
+  }
 }

@@ -45,6 +45,7 @@ class Game {
       this.fieldsPositions,
       this.checkAndHandleWin
     );
+    Ui.handleEndOfTurnButton();
 
     this.addClickListener(models);
 
