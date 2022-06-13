@@ -70,7 +70,7 @@
     <script defer>
       const getGamesHistory = async () => {
         const gamesHistory = await fetch(
-          "http://localhost:3000/getGamesHistory"
+          `http://localhost:${process.env.PORT}/getGamesHistory`
         );
 
         const info = await gamesHistory.json();

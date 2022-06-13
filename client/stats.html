@@ -71,7 +71,10 @@
       let userStatsPuserName = document.querySelector("#userStats-p-userName");
       let userStatsPwins = document.querySelector("#userStats-p-wins");
       let userStatsPloses = document.querySelector("#userStats-p-loses");
-      fetch("http://localhost:3000/postSpecificUserStat", options)
+      fetch(
+        `http://localhost:${process.env.PORT}/postSpecificUserStat`,
+        options
+      )
         .then((response) => response.json())
         .then((data) => {
           console.log(data);

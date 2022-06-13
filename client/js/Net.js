@@ -1,10 +1,14 @@
 import handleStateChange from "./net/handleStateChange.js";
 import handleOpponentsMove from "./net/handleOpponentsMove.js";
-const socket = io("http://localhost:3000/", { transports: ["websocket"] }); // TODO
+const socket = io("http://localhost:${process.env.PORT}/", {
+  transports: ["websocket"],
+}); // TODO
 
 export default class Net {
   constructor() {
-    this.socket = io("http://localhost:3000/", { transports: ["websocket"] });
+    this.socket = io(`http://localhost:${process.env.PORT}/`, {
+      transports: ["websocket"],
+    });
   }
 
   static async logIn(nick) {
@@ -29,7 +33,7 @@ export default class Net {
     fieldsPositions,
     checkAndHandleWin
   ) {
-    // const socket = io("http://localhost:3000/", { transports: ["websocket"] });
+    // const socket = io("http://localhost:${process.env.PORT}/", { transports: ["websocket"] });
     socket.on("receive-communication", (state, move) => {
       console.log(state);
       handleStateChange(state, setGameState);
@@ -51,7 +55,7 @@ export default class Net {
   }
 
   static sendMove(move) {
-    // const socket = io("http://localhost:3000/", { transports: ["websocket"] });
+    // const socket = io("http://localhost:${process.env.PORT}/", { transports: ["websocket"] });
     socket.emit("request-communication", move);
   }
 
@@ -73,7 +77,7 @@ export default class Net {
       body: JSON.stringify(body),
     };
 
-    fetch(`http://localhost:3000/endGame`, options)
+    fetch(`http://localhost:${process.env.PORT}/endGame`, options)
       .then((response) => response.json())
       .then((data) => console.log(data));
   }
@@ -92,7 +96,7 @@ export default class Net {
       body: JSON.stringify(body),
     };
 
-    fetch(`http://localhost:3000/mongoaddUserStat`, options)
+    fetch(`http://localhost:${process.env.PORT}/mongoaddUserStat`, options)
       .then((response) => response.json())
       .then((data) => console.log(data));
   }
