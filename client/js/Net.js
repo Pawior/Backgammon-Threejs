@@ -33,7 +33,9 @@ export default class Net {
     fieldsPositions,
     checkAndHandleWin
   ) {
-    // const socket = io("http://localhost:${process.env.PORT}/", { transports: ["websocket"] });
+    const socket = io(`/`, {
+      transports: ["websocket"],
+    });
     socket.on("receive-communication", (state, move) => {
       console.log(state);
       handleStateChange(state, setGameState);
