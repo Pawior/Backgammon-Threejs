@@ -57,7 +57,7 @@ export default class Net {
   }
 
   static sendMove(move) {
-    // const socket = io("http://localhost:${process.env.PORT}/", { transports: ["websocket"] });
+    const socket = io("/", { transports: ["websocket"] });
     socket.emit("request-communication", move);
   }
 
