@@ -45,7 +45,7 @@ class Game {
       this.fieldsPositions,
       this.checkAndHandleWin
     );
-    Ui.handleEndOfTurnButton();
+    Ui.handleEndOfTurnButton(this.setMovesLeft);
 
     this.addClickListener(models);
 
@@ -92,7 +92,8 @@ class Game {
             this.checkAndHandleFinishingPhase,
             this.movesLeft,
             this.getMovesLeft,
-            this.setMovesLeft
+            this.setMovesLeft,
+            this.checkAndHandleWin
           );
         } else if (object.name === "checker") {
           handlecheckerClick(
@@ -141,8 +142,18 @@ class Game {
       (checker) => checker.color === this.playersColor && !checker.outOfGame
     );
 
-    const opponentsCheckersLeft = this.checkers.filter((checker) =>
-      (checker.color === this.playersColor) === 1 ? 2 : 1 && !checker.outOfGame
+    const opponentsCheckersLeft = this.checkers.filter(
+      (checker) =>
+        checker.color === (this.playersColor === 1 ? 2 : 1) &&
+        !checker.isOutOfGame
+    );
+
+    console.log("opponents'moves: ", opponentsCheckersLeft.length);
+
+    console.log(
+      this.checkers.filter(
+        (checker) => checker.color === (this.playersColor === 1 ? 2 : 1)
+      )
     );
 
     if (myCheckersLeft.length <= 0) {

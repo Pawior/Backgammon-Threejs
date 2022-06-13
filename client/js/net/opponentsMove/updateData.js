@@ -4,8 +4,9 @@ export default function updateData(opponentsMove, checkersData, checkerModels) {
       checkersData[i].position.isOnBar = opponentsMove.newPosition.isOnBar;
       checkersData[i].position.index = opponentsMove.newPosition.index;
       checkersData[i].position.level = opponentsMove.newPosition.level;
-      checkersData[i].isOutOfGame = opponentsMove.isOutOfGame;
-
+      checkersData[i].isOutOfGame = opponentsMove.isOutGame;
+      // console.log(opponentsMove);
+      // console.log("checker out of game: ", opponentsMove.isOutOfGame);
       // console.log(checkersData[i]);
       break;
     }
