@@ -52,6 +52,7 @@ class Game {
       this.net.logIn
     );
     Ui.handleEndOfTurnButton(this.setMovesLeft, this.net.endTurn);
+    Ui.handleResetGame();
 
     this.addClickListener(models);
 

@@ -47,6 +47,7 @@ router.get("/gamesHistory", controller.gamesHistory);
 router.post("/endGame", async (req, res) => {
   await mongoController.addGameToHistory(req, res);
 });
+router.post("/resetGame", controller.resetGame);
 
 router.post("/logIn", controller.logIn);
 

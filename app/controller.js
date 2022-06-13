@@ -51,6 +51,10 @@ module.exports = {
       res.error({ message: "cant find that status" });
     }
   },
+  resetGame: (req, res) => {
+    users = [];
+    res.send({ message: "reset" });
+  },
   gamesHistory: (req, res) => {
     res.sendFile(path.join(__dirname, "..", "client", "gamesHistory.html"));
   },
