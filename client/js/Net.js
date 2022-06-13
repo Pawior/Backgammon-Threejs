@@ -1,11 +1,5 @@
 import handleStateChange from "./net/handleStateChange.js";
 import handleOpponentsMove from "./net/handleOpponentsMove.js";
-<<<<<<< HEAD
-// const socket = io("http://localhost:${process.env.PORT}/", {
-//   transports: ["websocket"],
-// }); // TODO
-=======
->>>>>>> improvments
 
 export default class Net {
   constructor() {
@@ -35,16 +29,8 @@ export default class Net {
     checkerMargin,
     fieldsPositions,
     checkAndHandleWin
-<<<<<<< HEAD
-  ) {
-    const socket = io(`/`, {
-      transports: ["websocket"],
-    });
-    socket.on("receive-communication", (state, move) => {
-=======
   ) => {
     this.socket.on("receive-communication", (state, move) => {
->>>>>>> improvments
       console.log(state);
       handleStateChange(state, setGameState);
 
@@ -64,16 +50,9 @@ export default class Net {
     });
   };
 
-<<<<<<< HEAD
-  static sendMove(move) {
-    const socket = io("/", { transports: ["websocket"] });
-    socket.emit("request-communication", move);
-  }
-=======
   sendMove = (move) => {
     this.socket.emit("request-communication", move);
   };
->>>>>>> improvments
 
   endTurn = () => {
     this.socket.emit("request-communication");
