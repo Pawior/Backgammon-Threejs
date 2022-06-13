@@ -45,6 +45,7 @@ class Game {
       this.fieldsPositions,
       this.checkAndHandleWin
     );
+    Ui.handleEndOfTurnButton(this.setMovesLeft);
 
     this.addClickListener(models);
 
@@ -91,7 +92,8 @@ class Game {
             this.checkAndHandleFinishingPhase,
             this.movesLeft,
             this.getMovesLeft,
-            this.setMovesLeft
+            this.setMovesLeft,
+            this.checkAndHandleWin
           );
         } else if (object.name === "checker") {
           handlecheckerClick(
@@ -140,14 +142,20 @@ class Game {
       (checker) => checker.color === this.playersColor && !checker.outOfGame
     );
 
-    const opponentsCheckersLeft = this.checkers.filter((checker) =>
-      (checker.color === this.playersColor) === 1 ? 2 : 1 && !checker.outOfGame
+    const opponentsCheckersLeft = this.checkers.filter(
+      (checker) =>
+        checker.color === (this.playersColor === 1 ? 2 : 1) &&
+        !checker.isOutOfGame
     );
+
+    console.log("opponents'checkers: ", opponentsCheckersLeft.length);
 
     if (myCheckersLeft.length <= 0) {
       console.log("you won");
+      Ui.showMessage("you won");
     } else if (opponentsCheckersLeft.length <= 0) {
-      console.log("the oppoent won");
+      console.log("the opponent won");
+      Ui.showMessage("the opponent won");
     }
 
     // Net.saveGameInfo(this.playersColor, this.playersColor) // TODO

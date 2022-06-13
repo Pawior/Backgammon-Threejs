@@ -11,7 +11,7 @@ module.exports = (io, socket) => {
     let state = "opponents-turn";
     console.log("pieceMoveInfo", pieceMoveInfo);
 
-    if (pieceMoveInfo.finalMove == true) {
+    if (!pieceMoveInfo || pieceMoveInfo?.finalMove == true) {
       state = "your-turn";
     } else state = "opponents-turn";
     console.log("pionek leci");

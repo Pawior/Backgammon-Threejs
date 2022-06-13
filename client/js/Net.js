@@ -55,6 +55,10 @@ export default class Net {
     socket.emit("request-communication", move);
   }
 
+  static endTurn() {
+    socket.emit("request-communication");
+  }
+
   static saveGameInfo(winner, loser) {
     let body = {
       winnerColor: winner,

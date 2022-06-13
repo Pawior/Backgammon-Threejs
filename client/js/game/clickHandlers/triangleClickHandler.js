@@ -17,9 +17,9 @@ function handleTriangleClick(
   checkAndHandleFinishingPhase,
   movesLeft,
   getMovesLeft,
-  setMovesLeft
+  setMovesLeft,
+  checkAndHandleWin
 ) {
-  console.log(movesLeft);
   if (!movesLeft || movesLeft <= 0) return;
 
   if (!isClickingAllowed) return;
@@ -83,6 +83,7 @@ function handleTriangleClick(
     }
 
     checkAndHandleFinishingPhase(selectedChecker.getColorNumber());
+    checkAndHandleWin();
 
     // console.log(move);
 
