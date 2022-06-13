@@ -1,5 +1,3 @@
-import Net from "./Net.js";
-
 export default class Ui {
   static handleLoginScreen(
     setPlayersColor,
@@ -9,7 +7,9 @@ export default class Ui {
     checkerWidth,
     checkerMargin,
     fieldsPositions,
-    checkAndHandleWin
+    checkAndHandleWin,
+    monitorState,
+    logIn
   ) {
     const loginButton = document.querySelector("#login-button");
     loginButton.addEventListener("click", async (e) => {
@@ -20,7 +20,7 @@ export default class Ui {
 
       const nickInput = document.querySelector("#nick");
       const nick = nickInput.value;
-      const startInfo = await Net.logIn(nick);
+      const startInfo = await logIn(nick);
       setPlayersColor(startInfo.color);
 
       this.showWaitingScreen();
@@ -31,7 +31,7 @@ export default class Ui {
 
       // setGameState(startInfo.state);
 
-      Net.monitorState(
+      monitorState(
         setGameState,
         checkerData,
         checkerModels,
@@ -53,11 +53,11 @@ export default class Ui {
     waitingScreen.style.display = "none";
   }
 
-  static handleEndOfTurnButton(setMovesLeft) {
+  static handleEndOfTurnButton(setMovesLeft, endTurn) {
     let button = document.querySelector("#end-of-turn-button");
     button.addEventListener("click", () => {
       this.showWaitingScreen();
-      Net.endTurn();
+      endTurn();
       setMovesLeft(undefined);
     });
   }

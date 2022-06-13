@@ -10,6 +10,7 @@ import Models from "./Models.js";
 import Ui from "./Ui.js";
 
 import addDiceListener from "./game/addDiceListener.js";
+import Net from "./Net.js";
 
 class Game {
   constructor() {
@@ -34,6 +35,9 @@ class Game {
     this.checkerWidth = models.getCheckerWidth();
     this.checkerMargin = models.getCheckerMargin();
 
+    // Net
+    this.net = new Net();
+
     // Ui
     Ui.handleLoginScreen(
       this.setPlayersColor,
@@ -43,9 +47,11 @@ class Game {
       this.checkerWidth,
       this.checkerMargin,
       this.fieldsPositions,
-      this.checkAndHandleWin
+      this.checkAndHandleWin,
+      this.net.monitorState,
+      this.net.logIn
     );
-    Ui.handleEndOfTurnButton(this.setMovesLeft);
+    Ui.handleEndOfTurnButton(this.setMovesLeft, this.net.endTurn);
 
     this.addClickListener(models);
 
@@ -93,7 +99,8 @@ class Game {
             this.movesLeft,
             this.getMovesLeft,
             this.setMovesLeft,
-            this.checkAndHandleWin
+            this.checkAndHandleWin,
+            this.net.sendMove
           );
         } else if (object.name === "checker") {
           handlecheckerClick(
@@ -110,7 +117,8 @@ class Game {
             this.checkAndHandleWin,
             this.movesLeft,
             this.getMovesLeft,
-            this.setMovesLeft
+            this.setMovesLeft,
+            this.net.sendMove
           );
         }
       }
@@ -158,7 +166,7 @@ class Game {
       Ui.showMessage("the opponent won");
     }
 
-    // Net.saveGameInfo(this.playersColor, this.playersColor) // TODO
+    // this.net.saveGameInfo(this.playersColor, this.playersColor) // TODO
   };
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
