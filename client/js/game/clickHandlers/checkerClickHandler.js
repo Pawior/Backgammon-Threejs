@@ -1,7 +1,6 @@
 import { setMeshColor } from "../../utils.js";
 import { moveChecker } from "./triangleClickHandler.js";
 import Ui from "../../Ui.js";
-import Net from "../../Net.js";
 
 function handlecheckerClick(
   checker,
@@ -17,7 +16,8 @@ function handlecheckerClick(
   checkAndHandleWin,
   movesLeft,
   getMovesLeft,
-  setMovesLeft
+  setMovesLeft,
+  sendMove
 ) {
   // console.log(checker.getIsOnisOnBar());
   // if (selectedChecker) {
@@ -77,7 +77,8 @@ function handlecheckerClick(
       checkAndHandleWin,
       movesLeft,
       getMovesLeft,
-      setMovesLeft
+      setMovesLeft,
+      sendMove
     );
   }
 
@@ -127,7 +128,8 @@ function findAvailableMoves(
   checkAndHandleWin,
   movesLeft,
   getMovesLeft,
-  setMovesLeft
+  setMovesLeft,
+  sendMove
 ) {
   // console.log(checkersData);
 
@@ -157,7 +159,8 @@ function findAvailableMoves(
         checkAndHandleWin,
         movesLeft,
         getMovesLeft,
-        setMovesLeft
+        setMovesLeft,
+        sendMove
       );
     }
 
@@ -193,12 +196,7 @@ function findAvailableMoves(
   return availableMoves;
 }
 
-function findAvailableMovesFromBar(
-  checker,
-  numbersThrown,
-  checkersData,
-  setSelectedChecker
-) {
+function findAvailableMovesFromBar(checker, numbersThrown, checkersData) {
   let availableMoves = [];
 
   let numberChcecked;
@@ -248,7 +246,8 @@ function checkAndHandleBearingOff(
   checkAndHandleWin,
   movesLeft,
   getMovesLeft,
-  setMovesLeft
+  setMovesLeft,
+  sendMove
 ) {
   const color1Map = { 6: 19, 5: 20, 4: 21, 3: 22, 2: 23, 1: 24 };
 
@@ -293,7 +292,7 @@ function checkAndHandleBearingOff(
       Ui.showWaitingScreen();
     }
 
-    Net.sendMove({
+    sendMove({
       id: checkerToRemove.id,
       isOutGame: true,
       type: "bearing-off",

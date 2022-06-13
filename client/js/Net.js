@@ -1,8 +1,11 @@
 import handleStateChange from "./net/handleStateChange.js";
 import handleOpponentsMove from "./net/handleOpponentsMove.js";
+<<<<<<< HEAD
 // const socket = io("http://localhost:${process.env.PORT}/", {
 //   transports: ["websocket"],
 // }); // TODO
+=======
+>>>>>>> improvments
 
 export default class Net {
   constructor() {
@@ -11,7 +14,7 @@ export default class Net {
     });
   }
 
-  static async logIn(nick) {
+  logIn = async (nick) => {
     const body = JSON.stringify({ nick: nick });
     const req = await fetch("/logIn", {
       method: "POST",
@@ -22,9 +25,9 @@ export default class Net {
     const info = await req.json();
 
     return info;
-  }
+  };
 
-  static monitorState(
+  monitorState = (
     setGameState,
     checkerData,
     checkerModels,
@@ -32,11 +35,16 @@ export default class Net {
     checkerMargin,
     fieldsPositions,
     checkAndHandleWin
+<<<<<<< HEAD
   ) {
     const socket = io(`/`, {
       transports: ["websocket"],
     });
     socket.on("receive-communication", (state, move) => {
+=======
+  ) => {
+    this.socket.on("receive-communication", (state, move) => {
+>>>>>>> improvments
       console.log(state);
       handleStateChange(state, setGameState);
 
@@ -54,16 +62,22 @@ export default class Net {
         );
       }
     });
-  }
+  };
 
+<<<<<<< HEAD
   static sendMove(move) {
     const socket = io("/", { transports: ["websocket"] });
     socket.emit("request-communication", move);
   }
+=======
+  sendMove = (move) => {
+    this.socket.emit("request-communication", move);
+  };
+>>>>>>> improvments
 
-  static endTurn() {
-    socket.emit("request-communication");
-  }
+  endTurn = () => {
+    this.socket.emit("request-communication");
+  };
 
   static saveGameInfo(winner, loser) {
     let body = {

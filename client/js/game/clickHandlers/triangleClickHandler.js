@@ -18,7 +18,8 @@ function handleTriangleClick(
   movesLeft,
   getMovesLeft,
   setMovesLeft,
-  checkAndHandleWin
+  checkAndHandleWin,
+  sendMove
 ) {
   if (!movesLeft || movesLeft <= 0) return;
 
@@ -95,7 +96,7 @@ function handleTriangleClick(
       Ui.showWaitingScreen();
     }
 
-    Net.sendMove({
+    sendMove({
       id: checkerData.id,
       isOutGame: checkerData.isOutGame, // TODO
       type: move.type,
