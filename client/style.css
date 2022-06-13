@@ -1,5 +1,6 @@
 :root {
   --background: rgba(37, 37, 37, 0.5);
+  --message-color: rgb(255, 255, 255);
 }
 
 body {
@@ -9,12 +10,12 @@ body {
 }
 
 #login-section,
-#waiting-screen {
+#waiting-screen,
+#message-screen {
   position: fixed;
   height: 100vh;
   width: 100vw;
   background: var(--background);
-  z-index: 20;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,10 +25,22 @@ body {
 
 #login-section {
   /* display: none; */
+  z-index: 22;
 }
 
 #waiting-screen {
+  z-index: 20;
   display: none;
+}
+
+#message-screen {
+  z-index: 21;
+  display: none;
+}
+
+#message {
+  font-size: 2.4rem;
+  color: var(--message-color);
 }
 
 #results-container {

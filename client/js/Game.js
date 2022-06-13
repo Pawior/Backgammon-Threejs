@@ -148,18 +148,14 @@ class Game {
         !checker.isOutOfGame
     );
 
-    console.log("opponents'moves: ", opponentsCheckersLeft.length);
-
-    console.log(
-      this.checkers.filter(
-        (checker) => checker.color === (this.playersColor === 1 ? 2 : 1)
-      )
-    );
+    console.log("opponents'checkers: ", opponentsCheckersLeft.length);
 
     if (myCheckersLeft.length <= 0) {
       console.log("you won");
+      Ui.showMessage("you won");
     } else if (opponentsCheckersLeft.length <= 0) {
-      console.log("the oppoent won");
+      console.log("the opponent won");
+      Ui.showMessage("the opponent won");
     }
 
     // Net.saveGameInfo(this.playersColor, this.playersColor) // TODO

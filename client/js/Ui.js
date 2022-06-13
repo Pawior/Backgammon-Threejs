@@ -61,4 +61,12 @@ export default class Ui {
       setMovesLeft(undefined);
     });
   }
+
+  static showMessage(message) {
+    let messageScreen = document.querySelector("#message-screen");
+    messageScreen.style.display = "flex";
+
+    let messageElement = document.querySelector("#message");
+    messageElement.innerText = message;
+  }
 }
