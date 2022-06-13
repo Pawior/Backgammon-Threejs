@@ -1,12 +1,12 @@
 import handleStateChange from "./net/handleStateChange.js";
 import handleOpponentsMove from "./net/handleOpponentsMove.js";
-const socket = io("http://localhost:${process.env.PORT}/", {
-  transports: ["websocket"],
-}); // TODO
+// const socket = io("http://localhost:${process.env.PORT}/", {
+//   transports: ["websocket"],
+// }); // TODO
 
 export default class Net {
   constructor() {
-    this.socket = io(`http://localhost:${process.env.PORT}/`, {
+    this.socket = io(`/`, {
       transports: ["websocket"],
     });
   }
@@ -77,7 +77,7 @@ export default class Net {
       body: JSON.stringify(body),
     };
 
-    fetch(`http://localhost:${process.env.PORT}/endGame`, options)
+    fetch(`/endGame`, options)
       .then((response) => response.json())
       .then((data) => console.log(data));
   }
@@ -96,7 +96,7 @@ export default class Net {
       body: JSON.stringify(body),
     };
 
-    fetch(`http://localhost:${process.env.PORT}/mongoaddUserStat`, options)
+    fetch(`/`, options)
       .then((response) => response.json())
       .then((data) => console.log(data));
   }

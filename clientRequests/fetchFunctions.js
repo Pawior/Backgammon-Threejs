@@ -1,4 +1,4 @@
-const server = `http://localhost:${process.env.PORT}`;
+const server = `/`;
 
 /**============================================
  *               Tutaj masz przykładowe body fetcha, ale pewnie najlepiej
