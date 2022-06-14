@@ -62,6 +62,22 @@ export default class Ui {
     });
   }
 
+
+  static handleResetGame() {
+    let button = document.querySelector("#reset-game");
+    button.addEventListener("click", () => {
+      let options = {
+        method: "POST",
+      };
+      fetch("/resetGame", options)
+        .then((response) => response.json())
+        .then((data) => {
+          window.location.reload();
+          console.log(data);
+        });
+    });
+  
+
   static showMessage(message, playersColor) {
     let messageScreen = document.querySelector("#message-screen");
     messageScreen.style.display = "flex";

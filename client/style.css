@@ -105,3 +105,17 @@ button {
   font-size: 1.5rem;
   cursor: pointer;
 }
+
+#reset-game {
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+  /* right: 50vw; */
+  /* transform: translateX(50%); */
+
+  border: 2px solid black;
+  border-radius: 10px;
+  background: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
