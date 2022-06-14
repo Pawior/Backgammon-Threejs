@@ -94,6 +94,7 @@ function handlecheckerClick(
 function isTopLevel(checkerId, checkerIndex, checkersData, isOnBar) {
   let checkersOnField;
 
+  // console.log(isOnBar);
   if (!isOnBar) {
     checkersOnField = checkersData.filter(
       (checker) =>
