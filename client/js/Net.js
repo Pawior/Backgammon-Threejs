@@ -91,7 +91,7 @@ export default class Net {
       body: JSON.stringify(body),
     };
 
-    fetch(`/`, options)
+    fetch(`/addUserStat`, options)
       .then((response) => response.json())
       .then((data) => console.log(data));
   }

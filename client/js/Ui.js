@@ -86,6 +86,6 @@ export default class Ui {
 
     let statsLink = messageScreen.querySelector("a");
 
-    statsLink.href = `/postSpecificUserStat?color=${encodeURI(playersColor)}`;
+    statsLink.href = `/userStat?color=${encodeURI(playersColor)}`;
   }
 }
