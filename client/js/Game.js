@@ -118,7 +118,8 @@ class Game {
             this.movesLeft,
             this.getMovesLeft,
             this.setMovesLeft,
-            this.net.sendMove
+            this.net.sendMove,
+            this.playersColor
           );
         }
       }
