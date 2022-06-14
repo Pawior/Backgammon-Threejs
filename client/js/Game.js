@@ -52,7 +52,6 @@ class Game {
       this.net.logIn
     );
     Ui.handleEndOfTurnButton(this.setMovesLeft, this.net.endTurn);
-    Ui.showMessage("you won");
 
     this.addClickListener(models);
 
@@ -119,7 +118,8 @@ class Game {
             this.movesLeft,
             this.getMovesLeft,
             this.setMovesLeft,
-            this.net.sendMove
+            this.net.sendMove,
+            this.playersColor
           );
         }
       }
