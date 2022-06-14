@@ -119,7 +119,8 @@ class Game {
             this.movesLeft,
             this.getMovesLeft,
             this.setMovesLeft,
-            this.net.sendMove
+            this.net.sendMove,
+            this.playersColor
           );
         }
       }
@@ -139,7 +140,7 @@ class Game {
         checker.color === color
     );
 
-    console.log(checkersNotInHome.length);
+    // console.log(checkersNotInHome.length);
 
     if (checkersNotInHome.length === 0) {
       this.isFinishingPhase = true;
@@ -157,7 +158,7 @@ class Game {
         !checker.isOutOfGame
     );
 
-    console.log("opponents'checkers: ", opponentsCheckersLeft.length);
+    // console.log("opponents'checkers: ", opponentsCheckersLeft.length);
 
     if (myCheckersLeft.length <= 0) {
       console.log("you won");
@@ -204,13 +205,13 @@ class Game {
     return this.selectedChecker;
   };
 
-  changeCheckerPosition = (checkerId, index, level) => {
+  changeCheckerPosition = (checkerId, index, level, isOnBar) => {
     for (let i = 0; i < this.checkers.length; i++) {
       if (this.checkers[i].id === checkerId) {
         this.checkers[i].position.index = index;
         this.checkers[i].position.level = level;
 
-        this.checkers[i].position.isOnBar = false;
+        this.checkers[i].position.isOnBar = isOnBar;
 
         return this.checkers[i];
       }

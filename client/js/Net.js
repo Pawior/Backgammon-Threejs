@@ -31,11 +31,11 @@ export default class Net {
     checkAndHandleWin
   ) => {
     this.socket.on("receive-communication", (state, move) => {
-      console.log(state);
+      // console.log(state);
       handleStateChange(state, setGameState);
 
       if (move) {
-        console.log(move);
+        // console.log(move);
 
         handleOpponentsMove(
           move,

@@ -17,19 +17,12 @@ function handlecheckerClick(
   movesLeft,
   getMovesLeft,
   setMovesLeft,
-  sendMove
+  sendMove,
+  playersColor
 ) {
-  // console.log(checker.getIsOnisOnBar());
-  // if (selectedChecker) {
-  //   console.log(selectedChecker.getMyId());
-  // }
-  // console.log(checkersData);
-
-  // console.log(
-  //   checkersData.filter((c) => c.position.index === checker.getIndex())
-  // );
-
   if (!isClickingAllowed) return;
+  if (playersColor !== checker.getColorNumber()) return;
+
   setIsClickingAllowed(false);
 
   if (!numbersThrown) {
@@ -94,6 +87,7 @@ function handlecheckerClick(
 function isTopLevel(checkerId, checkerIndex, checkersData, isOnBar) {
   let checkersOnField;
 
+  // console.log(isOnBar);
   if (!isOnBar) {
     checkersOnField = checkersData.filter(
       (checker) =>

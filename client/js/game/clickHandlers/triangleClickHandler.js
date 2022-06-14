@@ -179,6 +179,7 @@ function captureChecker(
       checkersData[i].position.isOnBar = true;
       checkersData[i].position.index = checkersOnBar.length + 1;
       checkersData[i].position.level = checkerToCapture.getColorNumber();
+      // console.log(checkersData[i]);
     }
   }
 

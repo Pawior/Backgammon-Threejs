@@ -62,6 +62,7 @@ export default class Ui {
     });
   }
 
+
   static handleResetGame() {
     let button = document.querySelector("#reset-game");
     button.addEventListener("click", () => {
@@ -75,13 +76,17 @@ export default class Ui {
           console.log(data);
         });
     });
-  }
+  
 
-  static showMessage(message) {
+  static showMessage(message, playersColor) {
     let messageScreen = document.querySelector("#message-screen");
     messageScreen.style.display = "flex";
 
     let messageElement = document.querySelector("#message");
     messageElement.innerText = message;
+
+    let statsLink = messageScreen.querySelector("a");
+
+    statsLink.href = `/?color=${encodeURI(playersColor)}`; // missing path
   }
 }
