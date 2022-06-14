@@ -62,7 +62,6 @@ export default class Ui {
     });
   }
 
-
   static handleResetGame() {
     let button = document.querySelector("#reset-game");
     button.addEventListener("click", () => {
@@ -76,7 +75,7 @@ export default class Ui {
           console.log(data);
         });
     });
-  
+  }
 
   static showMessage(message, playersColor) {
     let messageScreen = document.querySelector("#message-screen");
@@ -87,6 +86,6 @@ export default class Ui {
 
     let statsLink = messageScreen.querySelector("a");
 
-    statsLink.href = `/?color=${encodeURI(playersColor)}`; // missing path
+    statsLink.href = `/postSpecificUserStat?color=${encodeURI(playersColor)}`;
   }
 }
