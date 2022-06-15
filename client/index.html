@@ -39,6 +39,37 @@
       <img src="images/dice/3.svg" alt="dice image" />
     </button>
     <button id="reset-game">Reset</button>
+
+    <div id="userStatModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="container">
+          <h1>User Stats <ion-icon name="stats-chart-outline"></ion-icon></h1>
+          <div id="userStats-container">
+            <p id="userStats-p-userName">
+              <ion-icon name="person-outline"></ion-icon> User Name:
+            </p>
+            <p id="userStats-p-wins">
+              <ion-icon name="trophy-outline"></ion-icon> Wins:
+            </p>
+            <p id="userStats-p-loses">
+              <ion-icon name="trophy-outline"></ion-icon> Loses:
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div id="root"></div>
+    <script defer>
+      let modal = document.getElementById("userStatModal");
+
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+    </script>
   </body>
 </html>

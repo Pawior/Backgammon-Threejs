@@ -86,6 +86,43 @@ export default class Ui {
 
     let statsLink = messageScreen.querySelector("a");
 
-    statsLink.href = `/userStat?color=${encodeURI(playersColor)}`;
+    // statsLink.href = `../stats.html`;
+    statsLink.onclick = function () {
+      modal.style.display = "block";
+    };
+    let span = document.getElementsByClassName("close")[0];
+    let modal = document.getElementById("userStatModal");
+
+    span.onclick = function () {
+      modal.style.display = "none";
+    };
+
+    let body = {
+      userColor: 1,
+    };
+    let options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    };
+    let userStatsContainer = document.querySelector("#userStats-container");
+    let userStatsPuserName = document.querySelector("#userStats-p-userName");
+    let userStatsPwins = document.querySelector("#userStats-p-wins");
+    let userStatsPloses = document.querySelector("#userStats-p-loses");
+    fetch(`/postSpecificUserStat`, options)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        try {
+          userStatsPuserName.innerHTML += `<span class="writtenInfo"> ${data.userName} </span>`;
+          userStatsPwins.innerHTML += ` <span class="writtenInfo"> ${data.wins} </span>`;
+          userStatsPloses.innerHTML += `<span class="writtenInfo"> ${data.loses} </span>`;
+        } catch (e) {
+          console.error(e);
+          console.log(e);
+        }
+      });
   }
 }

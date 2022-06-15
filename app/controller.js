@@ -59,6 +59,8 @@ module.exports = {
     res.sendFile(path.join(__dirname, "..", "client", "gamesHistory.html"));
   },
   userStatPage: (req, res) => {
-    res.sendFile(path.join(__dirname, "..", "client", "stats.html"));
+    console.log(req.query);
+    res.send({ userColor: req.params.color });
+    // res.sendFile(path.join(__dirname, "..", "client", "stats.html"));
   },
 };
