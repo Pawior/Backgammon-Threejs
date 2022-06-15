@@ -106,18 +106,23 @@ module.exports = {
   },
   postSpecificUserStat: async (req, res) => {
     console.log(req.body);
+    console.log(users);
     let userName = users.find((elem) => elem.color == req.body.userColor);
     userName = userName.nick;
     console.log(userName);
     const userStats = await UserStats.findOne({ userName: userName }).exec();
     console.log(userStats);
-    console.log(userStats.loses);
+    // console.log(userStats.loses);
     // res.sendFile(path.join(__dirname, "..", "..", "client", "stats.html"));
-    res.send({
-      userName: userStats.userName,
-      wins: userStats.wins,
-      loses: userStats.loses,
-    });
+    try {
+      res.send({
+        userName: userStats.userName,
+        wins: userStats.wins,
+        loses: userStats.loses,
+      });
+    } catch (e) {
+      console.log(e);
+    }
   },
   getGamesHistory: async (req, res) => {
     try {

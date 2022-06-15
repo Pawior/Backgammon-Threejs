@@ -52,7 +52,7 @@ module.exports = {
     }
   },
   resetGame: (req, res) => {
-    users = [];
+    users.length = 0;
     res.send({ message: "reset" });
   },
   gamesHistory: (req, res) => {

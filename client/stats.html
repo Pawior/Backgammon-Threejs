@@ -75,9 +75,14 @@
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-          userStatsPuserName.innerHTML += `<span class="writtenInfo"> ${data.userName} </span>`;
-          userStatsPwins.innerHTML += ` <span class="writtenInfo"> ${data.wins} </span>`;
-          userStatsPloses.innerHTML += `<span class="writtenInfo"> ${data.loses} </span>`;
+          try {
+            userStatsPuserName.innerHTML += `<span class="writtenInfo"> ${data.userName} </span>`;
+            userStatsPwins.innerHTML += ` <span class="writtenInfo"> ${data.wins} </span>`;
+            userStatsPloses.innerHTML += `<span class="writtenInfo"> ${data.loses} </span>`;
+          } catch (e) {
+            console.error(e);
+            console.log(e);
+          }
         });
     </script>
   </body>
