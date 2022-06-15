@@ -103,6 +103,8 @@ class Game {
             this.checkAndHandleWin,
             this.net.sendMove
           );
+
+          Ui.showMessage("", this.playersColor);
         } else if (object.name === "checker") {
           handlecheckerClick(
             object,
@@ -162,12 +164,12 @@ class Game {
 
     if (myCheckersLeft.length <= 0) {
       console.log("you won");
-      Ui.showMessage("you won");
+      Ui.showMessage("you won", this.playersColor);
       this.net.saveGameInfo(this.playersColor, this.playersColor === 1 ? 2 : 1);
       this.net.userStat({ userColor: this.playersColor, result: "win" });
     } else if (opponentsCheckersLeft.length <= 0) {
       console.log("the opponent won");
-      Ui.showMessage("the opponent won");
+      Ui.showMessage("the opponent won", this.playersColor);
       this.net.saveGameInfo(this.playersColor === 1 ? 2 : 1, this.playersColor);
       this.net.userStat({ userColor: this.playersColor, result: "lose" });
     }

@@ -45,7 +45,7 @@ button {
 }
 
 #message-screen {
-  z-index: 21;
+  z-index: 25;
   display: none;
   flex-direction: column;
   gap: 1.5em;
