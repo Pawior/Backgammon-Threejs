@@ -109,6 +109,7 @@ module.exports = {
     console.log(users);
     let userName = users.find((elem) => elem.color == req.body.userColor);
     userName = userName.nick;
+
     console.log(userName);
     const userStats = await UserStats.findOne({ userName: userName }).exec();
     console.log(userStats);

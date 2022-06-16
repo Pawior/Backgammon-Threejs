@@ -103,8 +103,6 @@ class Game {
             this.checkAndHandleWin,
             this.net.sendMove
           );
-
-          Ui.showMessage("", this.playersColor);
         } else if (object.name === "checker") {
           handlecheckerClick(
             object,
@@ -210,6 +208,8 @@ class Game {
   };
 
   changeCheckerPosition = (checkerId, index, level, isOnBar) => {
+    // Ui.showMessage("", this.playersColor);
+
     for (let i = 0; i < this.checkers.length; i++) {
       if (this.checkers[i].id === checkerId) {
         this.checkers[i].position.index = index;

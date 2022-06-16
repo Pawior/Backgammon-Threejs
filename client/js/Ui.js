@@ -98,7 +98,7 @@ export default class Ui {
     };
 
     let body = {
-      userColor: 1,
+      userColor: playersColor,
     };
     let options = {
       method: "POST",
@@ -111,18 +111,22 @@ export default class Ui {
     let userStatsPuserName = document.querySelector("#userStats-p-userName");
     let userStatsPwins = document.querySelector("#userStats-p-wins");
     let userStatsPloses = document.querySelector("#userStats-p-loses");
-    fetch(`/postSpecificUserStat`, options)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        try {
-          userStatsPuserName.innerHTML += `<span class="writtenInfo"> ${data.userName} </span>`;
-          userStatsPwins.innerHTML += ` <span class="writtenInfo"> ${data.wins} </span>`;
-          userStatsPloses.innerHTML += `<span class="writtenInfo"> ${data.loses} </span>`;
-        } catch (e) {
-          console.error(e);
-          console.log(e);
-        }
-      });
+    try {
+      fetch(`/postSpecificUserStat`, options)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          try {
+            userStatsPuserName.innerHTML += `<span class="writtenInfo"> ${data.userName} </span>`;
+            userStatsPwins.innerHTML += ` <span class="writtenInfo"> ${data.wins} </span>`;
+            userStatsPloses.innerHTML += `<span class="writtenInfo"> ${data.loses} </span>`;
+          } catch (e) {
+            console.error(e);
+            console.log(e);
+          }
+        });
+    } catch (e) {
+      console.error(e);
+    }
   }
 }
