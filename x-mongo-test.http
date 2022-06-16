@@ -41,10 +41,6 @@ POST http://localhost:3000/endGame HTTP/1.1
 content-type: application/json
 
 {
-      "users": {
-        "firstUserName": "Kasia",
-        "secondUserName": "Asia"
-      },
       "winner": "Kasia",
       "loser": "Asia"
 }
@@ -60,4 +56,14 @@ GET http://localhost:3000/getAllStat HTTP/1.1
 ###
 GET http://localhost:3000/getSpecificUserStat/?user=Adam HTTP/1.1
 
+###
 
+POST http://localhost:3000/mongoaddUserStat HTTP/1.1
+content-type: application/json
+
+{
+      "userColor": 1,
+      "result": "win"
+}
+
+###

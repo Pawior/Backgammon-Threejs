@@ -91,7 +91,7 @@ export default class Net {
       body: JSON.stringify(body),
     };
 
-    fetch(`/addUserStat`, options)
+    fetch(`/mongoaddUserStat`, options)
       .then((response) => response.json())
       .then((data) => console.log(data));
   }
