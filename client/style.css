@@ -118,6 +118,7 @@ button {
   background: none;
   font-size: 1.5rem;
   cursor: pointer;
+  z-index: 30;
 }
 .modal {
   display: none; /* Hidden by default */

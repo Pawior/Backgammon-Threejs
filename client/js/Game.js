@@ -38,6 +38,8 @@ class Game {
     // Net
     this.net = new Net();
 
+    console.log(this.net.saveGameInfo);
+
     // Ui
     Ui.handleLoginScreen(
       this.setPlayersColor,
