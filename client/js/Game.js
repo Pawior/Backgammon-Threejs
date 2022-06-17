@@ -38,8 +38,6 @@ class Game {
     // Net
     this.net = new Net();
 
-    console.log(this.net.saveGameInfo);
-
     // Ui
     Ui.handleLoginScreen(
       this.setPlayersColor,
@@ -165,13 +163,13 @@ class Game {
     if (myCheckersLeft.length <= 0) {
       console.log("you won");
       Ui.showMessage("you won", this.playersColor);
-      this.net.saveGameInfo(this.playersColor, this.playersColor === 1 ? 2 : 1);
-      this.net.saveUserStat({ userColor: this.playersColor, result: "win" });
+      Net.saveGameInfo(this.playersColor, this.playersColor === 1 ? 2 : 1);
+      Net.saveUserStat({ userColor: this.playersColor, result: "win" });
     } else if (opponentsCheckersLeft.length <= 0) {
       console.log("the opponent won");
       Ui.showMessage("the opponent won", this.playersColor);
-      this.net.saveGameInfo(this.playersColor === 1 ? 2 : 1, this.playersColor);
-      this.net.saveuserStat({ userColor: this.playersColor, result: "lose" });
+      Net.saveGameInfo(this.playersColor === 1 ? 2 : 1, this.playersColor);
+      Net.saveuserStat({ userColor: this.playersColor, result: "lose" });
     }
   };
 
