@@ -1,4 +1,4 @@
-[
+export default [
   {
     name: "piece1",
     id: 1,
@@ -212,7 +212,7 @@
   },
 ];
 
-export default [
+[
   {
     name: "piece1",
     id: 1,
