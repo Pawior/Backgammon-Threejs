@@ -161,15 +161,15 @@ class Game {
     // console.log("opponents'checkers: ", opponentsCheckersLeft.length);
 
     if (myCheckersLeft.length <= 0) {
-      console.log("you won");
-      Ui.showMessage("you won", this.playersColor);
       Net.saveGameInfo(this.playersColor, this.playersColor === 1 ? 2 : 1);
       Net.saveUserStat({ userColor: this.playersColor, result: "win" });
+      console.log("you won");
+      Ui.showMessage("you won", this.playersColor);
     } else if (opponentsCheckersLeft.length <= 0) {
-      console.log("the opponent won");
-      Ui.showMessage("the opponent won", this.playersColor);
       Net.saveGameInfo(this.playersColor === 1 ? 2 : 1, this.playersColor);
       Net.saveUserStat({ userColor: this.playersColor, result: "lose" });
+      console.log("the opponent won");
+      Ui.showMessage("the opponent won", this.playersColor);
     }
   };
 

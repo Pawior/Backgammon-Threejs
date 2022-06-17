@@ -58,7 +58,7 @@ export default class Net {
     this.socket.emit("request-communication");
   };
 
-  static saveGameInfo = (winner, loser) => {
+  static saveGameInfo = async (winner, loser) => {
     let body = {
       winnerColor: winner,
       loserColor: loser,
@@ -72,12 +72,12 @@ export default class Net {
       body: JSON.stringify(body),
     };
 
-    fetch(`/endGame`, options)
+    await fetch(`/endGame`, options)
       .then((response) => response.json())
       .then((data) => console.log(data));
   };
 
-  static saveUserStat = (data) => {
+  static saveUserStat = async (data) => {
     let body = {
       userColor: data.userColor,
       result: data.result,
@@ -91,7 +91,7 @@ export default class Net {
       body: JSON.stringify(body),
     };
 
-    fetch(`/mongoaddUserStat`, options)
+    await fetch(`/mongoaddUserStat`, options)
       .then((response) => response.json())
       .then((data) => console.log(data));
   };
