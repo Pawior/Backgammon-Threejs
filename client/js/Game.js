@@ -169,7 +169,7 @@ class Game {
       console.log("the opponent won");
       Ui.showMessage("the opponent won", this.playersColor);
       Net.saveGameInfo(this.playersColor === 1 ? 2 : 1, this.playersColor);
-      Net.saveuserStat({ userColor: this.playersColor, result: "lose" });
+      Net.saveUserStat({ userColor: this.playersColor, result: "lose" });
     }
   };
 
