@@ -69,7 +69,6 @@ module.exports = {
         timeStampString: new Date().toISOString(),
       });
       console.log(userStat);
-      res.status(200).json({ msg: "dodane" });
     }
     if (req.body.result == "win") {
       UserStats.findOneAndUpdate(
@@ -90,6 +89,7 @@ module.exports = {
         }
       );
     }
+    res.status(200).json({ msg: "dodane" });
   },
   getSpecificUserStat: async (req, res) => {
     let user = req.query.user;
