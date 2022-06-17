@@ -58,7 +58,7 @@ export default class Net {
     this.socket.emit("request-communication");
   };
 
-  static saveGameInfo(winner, loser) {
+  saveGameInfo(winner, loser) {
     let body = {
       winnerColor: winner,
       loserColor: loser,
@@ -77,7 +77,7 @@ export default class Net {
       .then((data) => console.log(data));
   }
 
-  static saveUserStat(data) {
+  saveUserStat(data) {
     let body = {
       userColor: data.userColor,
       result: data.result,

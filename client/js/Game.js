@@ -164,12 +164,12 @@ class Game {
       console.log("you won");
       Ui.showMessage("you won", this.playersColor);
       this.net.saveGameInfo(this.playersColor, this.playersColor === 1 ? 2 : 1);
-      this.net.userStat({ userColor: this.playersColor, result: "win" });
+      this.net.saveUserStat({ userColor: this.playersColor, result: "win" });
     } else if (opponentsCheckersLeft.length <= 0) {
       console.log("the opponent won");
       Ui.showMessage("the opponent won", this.playersColor);
       this.net.saveGameInfo(this.playersColor === 1 ? 2 : 1, this.playersColor);
-      this.net.userStat({ userColor: this.playersColor, result: "lose" });
+      this.net.saveuserStat({ userColor: this.playersColor, result: "lose" });
     }
   };
 
