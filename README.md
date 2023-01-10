@@ -7,12 +7,15 @@ This is a 3D web implementation of 16th century irish board game. Backgammon is 
 - [Features](#features)
 - [Preview](#preview)
 - [Technology](#Technology)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Preview
 
 ![preview1](./client/images/preview/gamePreview.png)
+
+## Live Link
+
+https://dashboard.heroku.com/apps/backgammon-game/activity/builds/f0ed1efe-03ee-47a1-9033-3b0f6f452e2d
 
 ## Technology
 
@@ -25,6 +28,14 @@ Project is created with:
 - Node.js
 - Socket.io
 
-# License
+## Features
+
+- Ready fully playable game
+- Two player live time game
+- Data are sync between using Socket.io
+- Highscores saved in database
+- Clear layout
+
+## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
